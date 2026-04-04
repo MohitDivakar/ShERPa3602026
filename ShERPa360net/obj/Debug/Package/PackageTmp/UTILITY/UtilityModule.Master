@@ -1,0 +1,441 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UtilityModule.Master.cs" Inherits="ShERPa360net.UTILITY.UtilityModule" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../img/favicon.png" sizes="32x32" type="image/x-icon">
+    <!-- END META SECTION -->
+
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="../css/theme-default.css" />
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="../HelpViewer/css_js_plugins/plugins/timepicker/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css" type="text/css" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="../Dashboardcss/menu.css" rel="stylesheet" type="text/css" />
+
+    <!-- EOF CSS INCLUDE -->
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+    <style>
+        .notification {
+            /*background-color: #555;*/
+            color: white;
+            text-decoration: none;
+            padding: 15px 26px;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+            .notification:hover {
+                background: red;
+            }
+
+            .notification .badge {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                padding: 0px 5px;
+                border-radius: 50%;
+                background-color: red;
+                color: white;
+            }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="progress" class="modalloading">
+            <div class="center">
+                <img src="../img/loader4.gif" class="centerimg" />
+            </div>
+        </div>
+
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="modal modal-success fade" id="modal-success" data-backdrop="static" style="top: 50px !important;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                        <h4><i class="icon fa fa-check"></i>&nbsp;Success</h4>
+                        <asp:Label ID="lblSuccessMsg" runat="server"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal modal-danger fade" id="modal-danger" data-backdrop="static" style="top: 50px !important;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i>&nbsp;Error</h4>
+                        <asp:Label ID="lblErrMsg" runat="server"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal modal-warning fade" id="modal-warning" data-backdrop="static" style="top: 50px !important;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="alert alert-warning alert-dismissible">
+                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i>&nbsp;Alert</h4>
+                        <asp:Label ID="lblAlertMsg" runat="server"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-container">
+
+
+            <div class="menubar">
+                <section class="navigation">
+                    <div class="nav-container">
+                        <div class="brand">
+                            <a href="../HomePage.aspx">
+                                <img src="../Dashboardimg/logo.png" /></a>
+
+                            <label id="labelUserName" runat="server"></label>
+                        </div>
+
+
+                    </div>
+
+                    <nav>
+
+                        <div class="nav-mobile">
+
+                            <a id="nav-toggle" href="#"><span></span></a>
+                        </div>
+                        <ul class="nav-list pt-5">
+                            <li>
+                                <a href="../HomePage.aspx"><i class='bx bx-camera-home'></i>Home</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class='bx bxs-report'></i>Utility</a>
+                                <ul class="nav-dropdown">
+                                    <li id="tsmCromaRateCard"><a href="frmUploadRateCard.aspx"><i class='bx bx-printer inner-icn'></i>Upload Croma Rate Card</a></li>
+                                    <li id="tsmRptCromaRateCard"><a href="frmViewCromaRateCard.aspx"><i class='bx bx-printer inner-icn'></i>View Croma Rate Card</a></li>
+                                    <li id="tsmCromaQuotationApproval"><a href="frmApproveQuotation.aspx"><i class='bx bx-printer inner-icn'></i>Approve Quotation</a></li>
+                                    <li id="tsmViewCromaQuotation"><a href="ViewQuotation.aspx"><i class='bx bx-printer inner-icn'></i>View Quotation</a></li>
+                                    <li id="tsmDealerSearchLog"><a href="frmDealerSearchHistory.aspx"><i class='bx bx-printer inner-icn'></i>Dealer Search History</a></li>
+                                    <li id="tsmCromaJobID"><a href="frmNewCromaJobID.aspx"><i class='bx bx-printer inner-icn'></i>Job ID Search</a></li>
+                                    <li id="tsmCromaJobID2"><a href="frmSearchAllJobID.aspx"><i class='bx bx-printer inner-icn'></i>All Job ID Search</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class='bx bxs-report'></i>Report</a>
+                                <ul class="nav-dropdown">
+                                    <li id="lnkComplianceReport"><a href="frmUpdateComplianceReport.aspx"><i class='bx bxs-report inner-icn'></i>Compliance Report</a></li>
+                                    <li id="tsmUtlItemPriceMst"><a href="frmItemPriceMaster.aspx"><i class='bx bx-user-pin inner-icn'></i>MRP Master</a></li>
+                                    <li id="tsmUtlPopupAllow"><a href="frmPopup.aspx"><i class='bx bx-show inner-icn'></i>Lead Popup Show/Hide</a></li>
+                                    <li id="lnkPartPrice"><a href="frmPartPrice.aspx"><i class='bx bx-money inner-icn'></i>Part Price Master</a></li>
+                                    <li id="lnkSafetyReport"><a href="frmUpdateSafetyReport.aspx"><i class='bx bxs-bank inner-icn'></i>Safety Report</a></li>
+                                    <li id="lnkLabelPrint1"><a href="frmLabelPrint.aspx"><i class='bx bx-printer inner-icn'></i>MRP Label Print</a></li>
+                                    <li id="tsmRptDemoInstall1"><a href="rptDemoInstall.aspx"><i class='bx bx-printer inner-icn'></i>Demo/Installation Report</a></li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class='bx bxs-report'></i>Croma</a>
+                                <ul class="nav-dropdown">
+                                    <li id="tsmCromaBuybackPickup1"><a href="frmBuyBackCromaPickup.aspx"><i class='bx bx-user-pin inner-icn'></i>Croma Exchange</a></li>
+                                    <li id="tsmCromaExchangePriceApproval"><a href="frmExchangePriceAprv.aspx"><i class='bx bx-user-pin inner-icn'></i>Croma Price Approval</a></li>
+                                    <li id="tsmCromaPmt"><a href="frmVoucherPmt.aspx"><i class='bx bx-user-pin inner-icn'></i>Croma Voucher Payment</a></li>
+                                    <li id="tsmPaymentLink"><a href="frmPaymentLink.aspx"><i class='bx bx-user-pin inner-icn'></i>Payment Link</a></li>
+                                    <li id="tsmPaymentLinkReport"><a href="rptPaymentLinkRpt.aspx"><i class='bx bx-user-pin inner-icn'></i>Payment Link Report</a></li>
+
+                                    <li id="tsmGetDemoInstallData"><a href="frmDemoInstallationList.aspx"><i class='bx bx-user-pin inner-icn'></i>Demo/Installation List</a></li>
+                                    <li id="tsmCromaLotUpload"><a href="frmUploadLotData.aspx"><i class='bx bx-user-pin inner-icn'></i>Upload Croma Lot</a></li>
+                                    <li id="tsmCromaLotUpload2"><a href="frmViewCromaLotData.aspx"><i class='bx bx-user-pin inner-icn'></i>View Croma Lot</a></li>
+                                    <li id="tsmCromaLotUpload5"><a href="frmViewBooking.aspx"><i class='bx bx-user-pin inner-icn'></i>View Booking</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+
+            <div class="sidebar close">
+
+                <a href="../HomePage.aspx">
+                    <div class="logo-details">
+                        <img src="../Dashboardimg/logo.png" />
+                    </div>
+                </a>
+                <label id="lblUserName" runat="server"></label>
+                <ul class="nav-links pt-5">
+                    <li>
+
+                        <i class='bx bx-right-arrow-alt icn-blue mob-display'></i>
+                    </li>
+                    <li class="d-fl">
+                        <a href="../HomePage.aspx" class="hegt">
+                            <i class='bx bx-camera-home'></i>
+                            <span class="link_name">Home</span>
+                        </a>
+                        <h5 class="home-h5">Home</h5>
+                    </li>
+                    <li class="d-fl actives" id="dashboard">
+                        <a href="UtilityModuleDashboard.aspx" class="hegt">
+                            <i class='bx bxs-dashboard'></i>
+                            <span class="link_name">Dashboard</span>
+                        </a>
+                        <h5 class="home-h5">Dashboard</h5>
+                    </li>
+
+                    <li class="d-fl" id="rrutility">
+                        <div class="icon-link">
+                            <a href="UtilityModuleDashboard.aspx" class="hegt">
+                                <i class='bx bxs-report'></i>
+                                <span class="link_name">Utility</span>
+                            </a>
+                            <h5 class="home-h5">Utility</h5>
+                            <i class='bx bxs-chevron-down arrow'></i>
+                        </div>
+                        <ul class="sub-menu pre-scrollable" id="style-1utility">
+                            <li id="tsmCromaRateCard1"><a href="frmUploadRateCard.aspx"><i class='bx bx-printer inner-icn'></i>Upload Croma Rate Card</a></li>
+                            <li id="tsmRptCromaRateCard1"><a href="frmViewCromaRateCard.aspx"><i class='bx bx-printer inner-icn'></i>View Croma Rate Card</a></li>
+                            <li id="tsmCromaQuotationApproval1"><a href="frmApproveQuotation.aspx"><i class='bx bx-printer inner-icn'></i>Approve Quotation</a></li>
+                            <li id="tsmViewCromaQuotation1"><a href="ViewQuotation.aspx"><i class='bx bx-printer inner-icn'></i>View Quotation</a></li>
+                            <li id="tsmDealerSearchLog1"><a href="frmDealerSearchHistory.aspx"><i class='bx bx-printer inner-icn'></i>Dealer Search History</a></li>
+                            <li id="tsmCromaJobID1"><a href="frmNewCromaJobID.aspx"><i class='bx bx-printer inner-icn'></i>Job ID Search</a></li>
+                            <li id="tsmCromaJobID4"><a href="frmSearchAllJobID.aspx"><i class='bx bx-printer inner-icn'></i>All Job ID Search</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="d-fl" id="rrptlist">
+                        <div class="icon-link">
+                            <a href="UtilityModuleDashboard.aspx" class="hegt">
+                                <i class='bx bxs-report'></i>
+                                <span class="link_name">Report</span>
+                            </a>
+                            <h5 class="home-h5">Report</h5>
+                            <i class='bx bxs-chevron-down arrow'></i>
+                        </div>
+                        <ul class="sub-menu pre-scrollable" id="style-1">
+                            <li id="lnkComplianceReport1"><a href="frmUpdateComplianceReport.aspx"><i class='bx bxs-report inner-icn'></i>Compliance Report</a></li>
+                            <li id="tsmUtlItemPriceMst1"><a href="frmItemPriceMaster.aspx"><i class='bx bx-user-pin inner-icn'></i>MRP Master</a></li>
+                            <li id="tsmUtlPopupAllow1"><a href="frmPopup.aspx"><i class='bx bx-show inner-icn'></i>Lead Popup Show/Hide</a></li>
+                            <li id="lnkPartPrice1"><a href="frmPartPrice.aspx"><i class='bx bx-money inner-icn'></i>Part Price Master</a></li>
+                            <li id="lnkSafetyReport1"><a href="frmUpdateSafetyReport.aspx"><i class='bx bxs-bank inner-icn'></i>Safety Report</a></li>
+                            <li id="lnkLabelPrint1"><a href="frmLabelPrint.aspx"><i class='bx bx-printer inner-icn'></i>MRP Label Print</a></li>
+                            <li id="tsmRptDemoInstall"><a href="rptDemoInstall.aspx"><i class='bx bx-printer inner-icn'></i>Demo/Installation Report</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="d-fl" id="rptCroma">
+                        <div class="icon-link">
+                            <a href="UtilityModuleDashboard.aspx" class="hegt">
+                                <i class='bx bxs-report'></i>
+                                <span class="link_name">Croma</span>
+                            </a>
+                            <h5 class="home-h5">Croma</h5>
+                            <i class='bx bxs-chevron-down arrow'></i>
+                        </div>
+                        <ul class="sub-menu pre-scrollable" id="style-1">
+                            <li id="tsmCromaBuybackPickup"><a href="frmBuyBackCromaPickup.aspx"><i class='bx bx-user-pin inner-icn'></i>Croma Exchange</a></li>
+                            <li id="tsmCromaExchangePriceApproval1"><a href="frmExchangePriceAprv.aspx"><i class='bx bx-user-pin inner-icn'></i>Croma Price Approval</a></li>
+                            <li id="tsmCromaPmt1"><a href="frmVoucherPmt.aspx"><i class='bx bx-user-pin inner-icn'></i>Croma Voucher Payment</a></li>
+                            <li id="tsmPaymentLink1"><a href="frmPaymentLink.aspx"><i class='bx bx-user-pin inner-icn'></i>Payment Link</a></li>
+                            <li id="tsmPaymentLinkReport1"><a href="rptPaymentLinkRpt.aspx"><i class='bx bx-user-pin inner-icn'></i>Payment Link Report</a></li>
+
+                            <li id="tsmGetDemoInstallData1"><a href="frmDemoInstallationList.aspx"><i class='bx bx-user-pin inner-icn'></i>Demo/Installation List</a></li>
+                            <li id="tsmCromaLotUpload1"><a href="frmUploadLotData.aspx"><i class='bx bx-user-pin inner-icn'></i>Upload Croma Lot</a></li>
+                            <li id="tsmCromaLotUpload3"><a href="frmViewCromaLotData.aspx"><i class='bx bx-user-pin inner-icn'></i>View Croma Lot</a></li>
+                            <li id="tsmCromaLotUpload6"><a href="frmViewBooking.aspx"><i class='bx bx-user-pin inner-icn'></i>View Booking</a></li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </div>
+
+            <div class="rc_nav" id="centered_nav">
+                <a href="../MM/MMDashboard.aspx" title="MM">MM</a>
+                <%--mobex seller--%>
+                <a href="../UTILITY/UtilityDashboard.aspx" title="Mobex Seller">Mobex Seller</a>
+                <a href="../CRM/CustomerRltionShipMngDashBoard.aspx" title="CRM">CRM</a>
+                <a href="../SD/SDDashBoard.aspx" title="SD">SD</a>
+                <a href="../FI/FIDashBoard.aspx" title="Accounting & Finance">FI</a>
+                <a href="../REPORTS/ReportDashboard.aspx" title="Reports">Reports</a>
+                <a href="../UTILITY/UtilityModuleDashboard.aspx" title="Utility" class="active">Utility</a>
+                <a href="../Logistic/LogisticDashBoard.aspx" title="Logistic">Logistic</a>
+                <a href="../Samsung/frmTCR.aspx" title="Samsung">Samsung</a>
+
+                <a href="#" class="mb-control log-d bg-hover-none" data-box="#mb-signout" title="Logout"><i class='bx bx-log-out logout-icon float-right' aria-hidden="true"></i></a>
+                <a style="padding: 0px" align="right" class="pull-right  bg-hover-none">
+                    <div class="widget-info widget-padding-sm">
+
+                        <div class="widget-big-int plugin-clock" style="color: white;">00:00</div>
+
+                    </div>
+                </a>
+
+                <a href="../CRM/frmCRMNotification.aspx" class="notification fa fa-bell" aria-hidden="true">
+                    <span class="badge">
+                        <asp:Label ID="lblNotificationCnt" runat="server" Text="0"></asp:Label>
+                    </span>
+                </a>
+
+            </div>
+
+            <!-- END PAGE SIDEBAR -->
+
+            <!-- PAGE CONTENT -->
+            <div class="home-section">
+
+
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                    <div class="home-content">
+                        <%--   <i class='bx bx-menu icn-blue'></i>--%>
+                    </div>
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <!-- END PAGE CONTENT WRAPPER -->
+            </div>
+            <!-- END PAGE CONTENT -->
+        </div>
+
+
+        <div class="message-box animated fadeIn modal fade" data-sound="alert" id="mb-signout">
+            <div class="modal-dialog login-top">
+                <div class="modal-content">
+                    <div class="modal-header">LogOut</div>
+                    <div class="modal-body">
+                        <p>Press No if you want to continue work. Press Yes to logout current user.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="pull-right">
+                            <a href="../Login.aspx" class="btn btn-success btn-lg">Yes</a>
+                            <button class="btn btn-default btn-lg mb-control-close">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderMenu" runat="server">
+        </asp:ContentPlaceHolder>
+
+
+        <script type="text/javascript" src="../js/plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap.min.js"></script>
+        <script src="../Dashboardjs/sidemenu-active.js"></script>
+        <script>
+            (function ($) { // Begin jQuery
+                $(function () { // DOM ready
+                    // If a link has a dropdown, add sub menu toggle.
+                    $('nav ul li a:not(:only-child)').click(function (e) {
+                        $(this).siblings('.nav-dropdown').toggle();
+                        // Close one dropdown when selecting another
+                        $('.nav-dropdown').not($(this).siblings()).hide();
+                        e.stopPropagation();
+                    });
+                    // Clicking away from dropdown will remove the dropdown class
+                    $('html').click(function () {
+                        $('.nav-dropdown').hide();
+                    });
+                    // Toggle open and close nav styles on click
+                    $('#nav-toggle').click(function () {
+                        $('nav ul').slideToggle();
+                    });
+                    // Hamburger to X toggle
+                    $('#nav-toggle').on('click', function () {
+                        this.classList.toggle('active');
+                    });
+                }); // end DOM ready
+            })(jQuery); // end jQuery
+        </script>
+        <!-- END PLUGINS -->
+
+        <!-- THIS PAGE PLUGINS -->
+        <script type='text/javascript' src='../js/plugins/icheck/icheck.min.js'></script>
+        <script type="text/javascript" src="../js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-file-input.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-select.js"></script>
+        <script type="text/javascript" src="../js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+        <!-- END THIS PAGE PLUGINS -->
+        <!-- THIS PAGE PLUGINS -->
+        <script type="text/javascript" src="../js/plugins/fileinput/fileinput.min.js"></script>
+        <!-- END PAGE PLUGINS -->
+        <!-- datatable THIS PAGE PLUGINS -->
+        <script type='text/javascript' src='../js/plugins/icheck/icheck.min.js'></script>
+        <script type="text/javascript" src="../js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <!-- datatable END PAGE PLUGINS -->
+        <!-- FOR SLIDER AND WATCH -->
+        <script type="text/javascript" src="../js/plugins/owl/owl.carousel.min.js"></script>
+        <!-- FOR SLIDER AND WATCH END PAGE PLUGINS -->
+        <!-- START TEMPLATE -->
+        <script type="text/javascript" src="../js/plugins.js"></script>
+        <script type="text/javascript" src="../js/actions.js"></script>
+        <script type="text/javascript" src="../js/plugins/dualListbox/jquery.bootstrap-duallistbox.js"></script>
+        <!-- END JS FOR emoji icon -->
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <!-- END JS FOR emoji icon -->
+        <script type='text/javascript' src='../js/plugins/noty/jquery.noty.js'></script>
+        <script type='text/javascript' src='../js/plugins/noty/layouts/topCenter.js'></script>
+        <script type='text/javascript' src='../js/plugins/noty/layouts/topLeft.js'></script>
+        <script type='text/javascript' src='../js/plugins/noty/themes/default.js'></script>
+        <script type="text/javascript" src="../js/select2.min.js"></script>
+        <script type="text/javascript" src="../js/custom.js"></script>
+        <!-- For Data Table Jquery -->
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-timepicker.min.js"></script>
+        <%--<script type="text/javascript" src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>--%>  <%--THIS IS AFFACT THE DESIGN--%>
+        <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+        <%--<script type="text/javascript" src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>--%> <%--THIS IS AFFACT THE DESIGN--%>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-file-input.js"></script>
+        <script type="text/javascript" src="../js/plugins/fileinput/fileinput.min.js"></script>
+        <script type="text/javascript" src="../js/MobexSeller.js"></script>
+        <script src="../Dashboardjs/Chart.bundle.min.js"></script>
+        <script type="text/javascript" href="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript">
+              // When the user clicks anywhere outside of the modal, close it
+              //window.onclick = function (event) {
+              //    if ($("#modal-success").css("display") == "block") {
+              //        $("#modal-success").css("display", "none");
+              //    }
+              //}
+        </script>
+    </form>
+    <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+    <!-- START PRELOADS -->
+</body>
+</html>

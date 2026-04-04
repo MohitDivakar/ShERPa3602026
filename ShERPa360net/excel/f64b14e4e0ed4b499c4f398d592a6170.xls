@@ -1,0 +1,9 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">JOB ID</th><th scope="col">SERIAL NO</th><th scope="col">MESSAGE</th><th scope="col">ACTUAL SERIAL No</th>
+		</tr><tr>
+			<td>1065325</td><td>985623021458745</td><td>This job id updated successfully.!</td><td>&nbsp;</td>
+		</tr>
+	</table>
+</div>

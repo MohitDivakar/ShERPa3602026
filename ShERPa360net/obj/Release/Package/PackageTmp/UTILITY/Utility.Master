@@ -1,0 +1,589 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Utility.master.cs" Inherits="ShERPa360net.UTILITY.Utility" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../img/favicon.png" sizes="32x32" type="image/x-icon">
+    <!-- END META SECTION -->
+ <link rel="stylesheet" type="text/css" id="theme" href="../css/theme-default.css" />
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="../HelpViewer/css_js_plugins/plugins/timepicker/bootstrap-timepicker.css" />
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" type="text/css" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="../Dashboardcss/menu.css" rel="stylesheet" type="text/css" />
+
+    <!-- EOF CSS INCLUDE -->
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+
+    <style>
+        /*For Loading Functionality */
+        .modalloading {
+            position: fixed;
+            z-index: 999;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            background-color: Black;
+            filter: alpha(opacity=60);
+            opacity: 0.6;
+            -moz-opacity: 0.8;
+            display: none;
+        }
+
+        .center {
+            z-index: 1000;
+            margin: 50pxauto;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background-color: White;
+            border-radius: 10px;
+            filter: alpha(opacity=100);
+            opacity: 1;
+            -moz-opacity: 1;
+        }
+
+        .centerimg {
+            height: 128px;
+            width: 128px;
+            margin-top: 300px !important;
+            margin-left: 200px !important;
+        }
+
+        fieldset.scheduler-border {
+            border: 1px groove #ddd !important;
+            padding: 0 1.4em 1.4em 1.4em !important;
+            margin: 0 0 1.5em 0 !important;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        legend.scheduler-border {
+            font-size: 1.3em !important;
+            font-weight: bold !important;
+            text-align: left !important;
+        }
+        /*For Loading Functionality */
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="progress" class="modalloading">
+            <div class="center">
+                <img src="../img/loader4.gif" class="centerimg" />
+            </div>
+        </div>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="modal modal-success fade" id="modal-success" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                        <h4><i class="icon fa fa-check"></i>&nbsp;Success</h4>
+                        <asp:Label ID="lblSuccessMsg" runat="server"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal modal-danger fade" id="modal-danger" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i>&nbsp;Error</h4>
+                        <asp:Label ID="lblErrMsg" runat="server"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal modal-warning fade" id="modal-warning" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="alert alert-warning alert-dismissible">
+                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i>&nbsp;Alert</h4>
+                        <asp:Label ID="lblAlertMsg" runat="server"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+   <div class="page-container">
+
+
+       <div class="menubar">
+                <section class="navigation">
+  <div class="nav-container">
+    <div class="brand">
+      <a href="../HomePage.aspx"> <img src="../Dashboardimg/logo.png" /></a>
+
+         <label id="labelUserName" runat="server"></label>
+    
+    </div>
+       
+    <nav>
+
+      <div class="nav-mobile">
+         
+          <a id="nav-toggle" href="#"><span></span></a></div>
+      <ul class="nav-list pt-5">
+        <li>
+          <a href="../HomePage.aspx">  <i class='bx bx-camera-home'></i>Home</a>
+        </li>
+          <li>
+          <a>  <i class='bx bxs-dashboard'></i>Dashboard</a>
+        </li>
+          <li>
+          <a href="#">  <i class='bx bxs-dock-right'></i>BDO</a>
+             <ul class="nav-dropdown">
+                 <li id="lnkNewVendorEntry"><a href="VendorVisitEntry.aspx"><i class='bx bxl-product-hunt inner-icn'></i>Product Entry</a></li>
+                 <li id="lnkProductUnListed"><a href="ProductUnListedEntry.aspx"><i class='bx bx-list-ul inner-icn'></i>Product UnListed</a></li>
+                 <li id="lnkProductBikerStatusReport"><a href="BikerProductStatuswiseDetail.aspx"><i class='bx bx-purchase-tag inner-icn'></i>Biker Statuswise Report</a></li>          
+                 <li id="lnkBlanccoQcDetail"><a href="ProductBlanccoQcApproveDetail.aspx"><i class='bx bx-select-multiple inner-icn'></i>Blancco Qc Approval</a></li>
+                 <li id="lnkProductBDOReturnDetail"><a href="ProductReturnBDOToVendorDetail.aspx"><i class='bx bx-user-circle inner-icn'></i>BDO To Vendor Return</a></li>
+                 <li id="lnkPickedUpProductReturn" class=""><a href="PickedUpProductReturn.aspx"><i class='bx bxl-product-hunt inner-icn'></i>Picked Up Product Return</a></li>
+                            <%-- <li id="tsmPriceMaster1"><a class="link_name" href="frmItemPriceMaster.aspx">MRP Master</a></li>--%>
+                  <li id="lnkOtherProductEntry" class=""><a href="ProductOtherDeviceEntry.aspx"><i class='bx bxl-product-hunt inner-icn'></i>Other Product Entry</a></li>
+                        
+              </ul>
+        </li>
+          <li>
+          <a href="#"> <i class='bx bx-store'></i>Store</a>
+
+               <ul class="nav-dropdown">
+                  
+               <li id="lnkInwardDetail"><a href="ProductInwardDetail.aspx"><i class='bx bx-detail inner-icn'></i>Inward Detail</a></li>
+               <li id="lnkProductReturnDetail"><a href="ProductReturnDetail.aspx"><i class='bx bx-user-circle inner-icn'></i>Product Return</a></li>
+               <li id="lnkPrPoCreatinFromInward" class=""><a href="PoandPRFromInward.aspx"><i class='bx bx-book-add inner-icn'></i>Create Pr & Po From Inward</a></li>
+               <li id="lnkJangadlisting" class=""><a href="JangadKROListing.aspx"><i class='bx bx-book-add inner-icn'></i>Jangad Listing</a></li>
+               <li id="lnkJangadKROReturnlisting" class=""><a href="JangadKROReturnListingReport.aspx"><i class='bx bx-book-add inner-icn'></i>Jangad KRO Return Listing</a></li>
+               <li id="lnkProductInsuranceGenerate" class=""><a href="ProductInsuranceGenerate.aspx"><i class='bx bx-book-add inner-icn'></i>Generate Insurance</a></li>
+               <li id="lnkReturnableDc" class=""><a href="ReturnableDCDetail.aspx"><i class='bx bx-book-add inner-icn'></i>Returnable DC Detail</a></li>
+              </ul>
+        </li>
+          <li>
+          <a href="#"><i class='bx bx-buildings'></i>Back Office</a>
+            <ul class="nav-dropdown">
+               <li id="lnkProductSpecification"><a href="frmViewProdSpec.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Add Product Specification</a></li>
+                            <li id="lnkProductPriceApprovalDetail"><a href="PriceApproveDetail.aspx"><i class='bx bx-money inner-icn'></i>Price Approval</a></li>
+                            <li id="tsmTranMobexRejectoApprove" class=""><a href="RejectedPriceApproveDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Rejected To Approved</a></li>
+                            
+                <li id="tsmTranMobexProductListedReport" class=""><a href="ProductReportDetail.aspx"><i class='bx bxs-report inner-icn'></i>Product Report Detail</a></li>
+                            <li id="tsmTranPartnerApprovedListing" class=""><a href="PartnerApprovedQtyListingDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Partner Approved Upload Listing</a></li>
+
+
+                            <li id="tsmTranMobexReserved"><a href="ReservedExcelUpload.aspx"><i class='bx bx-upload inner-icn'></i>Reserved Excel Upload</a></li>
+                             <li id="tsmMstMMItemMapped"><a href="frmViewMappedItem.aspx"><i class='bx bx-receipt inner-icn'></i>Item Mapping</a></li>
+
+                            <li id="tsmMstMMItemUnMapped"><a href="frmUnMappedItemMapping.aspx"><i class='bx bxs-map-alt inner-icn'></i>UnMapped Item</a></li>
+                            
+                <li id="tsmCalculatedWebsiteAvgAmt" class=""><a href="frmCalculatedWebsiteAvgAmt.aspx"><i class='bx bx-link-alt inner-icn'></i>Calc Website AvgAmt</a></li>
+
+                <li id="tsmCalculatedAllPlatFormAvgAmt" class=""><a href="frmCalculatedAllPlatFormAvgAmt.aspx"><i class='bx bxs-store-alt inner-icn'></i>Calc All PlatForm AvgAmt</a></li>
+                      
+
+                           <%-- <li id="lnkReadyforlistingDetail"><a href="ReadyForListingDetail.aspx"><i class='bx bx-list-plus inner-icn'></i>Ready For Listing</a></li>--%>
+
+
+                            <li id="tsmTranMobexMapping"><a href="frmBDOAssign.aspx"><i class='bx bx-map-pin inner-icn'></i>BDO Mapping</a></li>
+                            <li id="tsmTranMobexASMMapping"><a href="frmASMAssign.aspx"><i class='bx bx-map-alt inner-icn'></i>ASM Mapping</a></li>
+                            <li id="tsmPendingPayment"><a href="frmPendingPayment.aspx"><i class='bx bx-map-alt inner-icn'></i>Pending Payments</a></li>  
+                            <li id="tsmMobexSellerFollowupCount"><a href="FollowupCount.aspx"><i class='bx bx-map-alt inner-icn'></i>Follow-up Count</a></li>  
+                            <li id="tsmMobexSellerStatusTracking"><a href="MobexSellerListingsTracking.aspx"><i class='bx bx-map-alt inner-icn'></i>Listing Status Tracking</a></li>            
+                            <li id="tsmTranMobexListingAssign"><a href="frmListingAssign.aspx"><i class='bx bx-map-alt inner-icn'></i>Pickup Assign</a></li>
+                            <li id=""><a href="AddNewList.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Add New List</a></li>
+                            <li id=""><a href="AddNewModel.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Add New Model</a></li>
+                            <li id=""><a href="MobileBrand.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Mobile Brand</a></li>
+                            <li id="tsmDelearToKRO"><a href="DelearToKRO.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Delear To KRO</a></li>
+                            <li id="tsmMosecUserActivity"><a href="MosecUserDailyActivity.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Mosec User Activity</a></li>
+                            <li id="tsmListingUpload"><a href="frmListableDataUpload.aspx"><i class='bx bx-map-alt inner-icn'></i>Upload Listing on Platforms</a></li>
+              </ul>
+        </li>
+         <li>
+          <a href="#"> <i class='bx bx-store'></i>Report</a>
+               <ul class="nav-dropdown">
+                            <li id="lnkProductStatusExportReport"><a href="ProductExportinExcelDetail.aspx"><i class='bx bx-customize inner-icn'></i>Product Report</a></li>
+                            <li id="lnkProductStatusReport"><a href="ProductStatuswiseDetail.aspx"><i class='bx bx-data inner-icn'></i>Product Statuswise Report</a></li>
+                            <li id="lnkListingTransactionReport"><a href="ListingTransactionDetail.aspx"><i class='bx bx-purchase-tag inner-icn'></i>Listing Log Report</a></li>          
+
+                      
+                         <%--   <li id="lnkProductBikerStatusReport"><a href="BikerProductStatuswiseDetail.aspx"><i class='bx bx-purchase-tag inner-icn'></i>Biker Statuswise Report</a></li>--%>
+                            <li id="tsmListedTracking"><a href="ProductDateWiseListedDetail.aspx"><i class='bx bx-list-check inner-icn'></i>Listed Report</a></li>
+                            <li id="tsmProductMakeModelSuggestHistory"><a href="MakeModelSuggestPriceHistoryReport.aspx"><i class='bx bx-shield-alt-2 inner-icn'></i>Product Suggest History Report</a></li>
+                            <li id="tsmProductEachStatusTrackAvgAmt"><a href="ProductEveryStatusDateTimeDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Product Each Status Track Report</a></li>
+                            <li id="lnkProductASMStatusReport"><a href="ProductASMStatuswiseDetail.aspx"><i class='bx bx-notepad inner-icn'></i>ASM Statuswise Report</a></li>
+                            <li id="tsmTranMobexListedUnlistedReport"><a href="ProductIntervalListedUnlistedDetail.aspx"><i class='bx bxs-bookmarks inner-icn'></i>Interval ListedUnlisted Report</a></li>
+                            <li id="tsmListedTracking" class=""><a href="ProductDateWiseListedDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Day wise Listing Report</a></li>
+                            <li id="lnkVendorListedActivityDetail" class=""><a href="VendorListedActivityDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Vendor Activity</a></li>
+                            <li id="" class=""><a href="MakeModelPOAvrageAmount.aspx"><i class='bx bx-book-open inner-icn'></i>MakeModelPOAvrageAmount</a></li> 
+                            <li id="tsmRejectedtoApproved"><a href="RejectToAcceptEx.aspx"><i class='bx bx-map-alt inner-icn'></i>Rejected to Approved Report</a></li>
+                            <li id="tsmRelistDetail" class=""><a href="RelistDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Relist Detail</a></li>
+                            <li id="tsmUnlistDetail" class=""><a href="AutoUnlistedDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Unlist Detail</a></li>
+                            <li id="tsmProductMakeModelSuggestHistorywithItemCode"><a href="MakeModelSuggestPriceHistoryReportItemCode.aspx"><i class='bx bx-shield-alt-2 inner-icn'></i>Product Spec Detail with Itemcode Asin</a></li>
+                            <li id="tsmLockPriceHistory"><a href="LockPriceHistory.aspx"><i class='bx bx-shield-alt-2 inner-icn'></i>Lock Price Log Report</a></li>
+              </ul>
+        </li>
+       
+      
+      
+      </ul>
+    </nav>
+  </div>
+</section>
+
+
+            </div>
+         <div class="sidebar close">
+               
+                <a href="../HomePage.aspx">
+                    <div class="logo-details">
+                        <img src="../Dashboardimg/logo.png" />
+                    </div>
+                </a>
+                 <label id="lblUserName" runat="server" ></label>
+                <ul class="nav-links pt-5">
+                    <li>
+                     
+                          <i class='bx bx-right-arrow-alt icn-blue mob-display'></i>
+                    </li>
+                    <li class="d-fl">
+                        <a href="../HomePage.aspx" class="hegt">
+                            <i class='bx bx-camera-home'></i>
+                            <span class="link_name">Home</span>
+                        </a>
+                        <h5 class="home-h5">Home</h5>
+                    </li>
+                      <li class="d-fl actives" id="dashboard">
+                        <a href="UtilityDashboard.aspx" class="hegt">
+                            <i class='bx bxs-dashboard'></i>
+                            <span class="link_name">Dashboard</span>
+                        </a>
+                        <h5 class="home-h5">Dashboard</h5>
+                    </li>
+                    <li class="d-fl actives" id="bdo">
+                        <div class="icon-link">
+                            <a href="#" class="hegt">
+                                 <i class='bx bxs-dock-right'></i>
+                                <span class="link_name">BDO</span>
+                            </a>
+                            <h5 class="home-h5">BDO</h5>
+                            <i class='bx bxs-chevron-down arrow'></i>
+                        </div>
+
+                        <ul class="sub-menu pre-scrollable " id="style-1">
+
+
+                           <li id="lnkNewVendorEntry"><a href="VendorVisitEntry.aspx"><i class='bx bxl-product-hunt inner-icn'></i>Product Entry</a></li>
+                            <li id="lnkProductUnListed"><a href="ProductUnListedEntry.aspx"><i class='bx bx-list-ul inner-icn'></i>Product UnListed</a></li>
+                            <li id="lnkProductBikerStatusReport"><a href="BikerProductStatuswiseDetail.aspx"><i class='bx bx-purchase-tag inner-icn'></i>Biker Statuswise Report</a></li>
+                            <li id="lnkBlanccoQcDetail"><a href="ProductBlanccoQcApproveDetail.aspx"><i class='bx bx-select-multiple inner-icn'></i>Blancco Qc Approval</a></li>
+                            <li id="lnkProductBDOReturnDetail"><a href="ProductReturnBDOToVendorDetail.aspx"><i class='bx bx-user-circle inner-icn'></i>BDO To Vendor Return</a></li>
+                            <li id="lnkPickedUpProductReturn" class=""><a href="PickedUpProductReturn.aspx"><i class='bx bxl-product-hunt inner-icn'></i>Picked Up Product Return</a></li>
+                            <%-- <li id="tsmPriceMaster1"><a class="link_name" href="frmItemPriceMaster.aspx">MRP Master</a></li>--%>
+                            <li id="lnkOtherProductEntry" class=""><a href="ProductOtherDeviceEntry.aspx"><i class='bx bxl-product-hunt inner-icn'></i>Other Product Entry</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="d-fl actives" id="store">
+                        <div class="icon-link">
+                            <a href="#" class="hegt">
+                                <i class='bx bx-store'></i>
+                                <span class="link_name">Store</span>
+                            </a>
+                            <h5 class="home-h5">Store</h5>
+                            <i class='bx bxs-chevron-down arrow'></i>
+                        </div>
+
+                        <ul class="sub-menu pre-scrollable " id="style-1">
+
+                                  
+               <li id="lnkInwardDetail"><a href="ProductInwardDetail.aspx"><i class='bx bx-detail inner-icn'></i>Inward Detail</a></li>
+                            <li id="lnkProductReturnDetail"><a href="ProductReturnDetail.aspx"><i class='bx bx-user-circle inner-icn'></i>Product Return</a></li>
+                                            <li id="lnkPrPoCreatinFromInward" class=""><a href="PoandPRFromInward.aspx"><i class='bx bx-book-add inner-icn'></i>Create Pr & Po From Inward</a></li>
+               <li id="lnkJangadlisting" class=""><a href="JangadKROListing.aspx"><i class='bx bx-book-add inner-icn'></i>Jangad Listing</a></li>
+               <li id="lnkJangadKROReturnlisting" class=""><a href="JangadKROReturnListingReport.aspx"><i class='bx bx-book-add inner-icn'></i>Jangad KRO Return Listing</a></li>
+               <li id="lnkProductInsuranceGenerate" class=""><a href="ProductInsuranceGenerate.aspx"><i class='bx bx-book-add inner-icn'></i>Generate Insurance</a></li>
+               <li id="lnkReturnableDc" class=""><a href="ReturnableDCDetail.aspx"><i class='bx bx-book-add inner-icn'></i>Returnable DC Detail</a></li>
+                
+                        </ul>
+                    </li>
+                      <li class="d-fl actives" id="backoffice">
+                        <div class="icon-link">
+                            <a href="#" class="hegt">
+                                <i class='bx bx-buildings'></i>
+                                <span class="link_name">Back Office</span>
+                            </a>
+                            <h5 class="home-h5">Back Office</h5>
+                            <i class='bx bxs-chevron-down arrow'></i>
+                        </div>
+
+                        <ul class="sub-menu pre-scrollable pre-scrolbar-menu" id="style-1" style="    margin-top: -226%;">
+                            <li id="lnkProductSpecification"><a href="frmViewProdSpec.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Add Product Specification</a></li>
+                            <li id="lnkProductPriceApprovalDetail"><a href="PriceApproveDetail.aspx"><i class='bx bx-money inner-icn'></i>Price Approval</a></li>
+                            <li id="tsmTranMobexRejectoApprove" class=""><a href="RejectedPriceApproveDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Rejected To Approved</a></li>
+                            
+                            <li id="tsmTranMobexProductListedReport" class=""><a href="ProductReportDetail.aspx"><i class='bx bxs-report inner-icn'></i>Product Report Detail</a></li>
+                            <li id="tsmTranPartnerApprovedListing" class=""><a href="PartnerApprovedQtyListingDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Partner Approved Upload Listing</a></li>
+
+
+                            <li id="tsmTranMobexReserved"><a href="ReservedExcelUpload.aspx"><i class='bx bx-upload inner-icn'></i>Reserved Excel Upload</a></li>
+                             <li id="tsmMstMMItemMapped"><a href="frmViewMappedItem.aspx"><i class='bx bx-receipt inner-icn'></i>Item Mapping</a></li>
+
+                            <li id="tsmMstMMItemUnMapped"><a href="frmUnMappedItemMapping.aspx"><i class='bx bxs-map-alt inner-icn'></i>UnMapped Item</a></li>
+                            
+                <li id="tsmCalculatedWebsiteAvgAmt" class=""><a href="frmCalculatedWebsiteAvgAmt.aspx"><i class='bx bx-link-alt inner-icn'></i>Calc Website AvgAmt</a></li>
+
+                <li id="tsmCalculatedAllPlatFormAvgAmt" class=""><a href="frmCalculatedAllPlatFormAvgAmt.aspx"><i class='bx bxs-store-alt inner-icn'></i>Calc All PlatForm AvgAmt</a></li>
+                      
+
+                           <%-- <li id="lnkReadyforlistingDetail"><a href="ReadyForListingDetail.aspx"><i class='bx bx-list-plus inner-icn'></i>Ready For Listing</a></li>--%>
+
+
+                            <li id="tsmTranMobexMapping"><a href="frmBDOAssign.aspx"><i class='bx bx-map-pin inner-icn'></i>BDO Mapping</a></li>
+                            <li id="tsmTranMobexASMMapping"><a href="frmASMAssign.aspx"><i class='bx bx-map-alt inner-icn'></i>ASM Mapping</a></li>
+                            <li id="tsmPendingPayment"><a href="frmPendingPayment.aspx"><i class='bx bx-map-alt inner-icn'></i>Pending Payments</a></li>   
+                            <li id="tsmMobexSellerFollowupCount"><a href="FollowupCount.aspx"><i class='bx bx-map-alt inner-icn'></i>Follow-up Count</a></li>
+                            <li id="tsmMobexSellerStatusTracking"><a href="MobexSellerListingsTracking.aspx"><i class='bx bx-map-alt inner-icn'></i>Listing Status Tracking</a></li>            
+                            <li id="tsmTranMobexListingAssign"><a href="frmListingAssign.aspx"><i class='bx bx-map-alt inner-icn'></i>Pickup Assign</a></li>
+                            <li id=""><a href="AddNewList.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Add New List</a></li>
+                            <li id=""><a href="AddNewModel.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Add New Model</a></li>
+                            <li id=""><a href="MobileBrand.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Mobile Brand</a></li>
+                            <li id="tsmDelearToKRO"><a href="DelearToKRO.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Delear To KRO</a></li>
+                            <li id="tsmMosecUserActivity"><a href="MosecUserDailyActivity.aspx"><i class='bx bx-add-to-queue inner-icn'></i>Mosec User Activity</a></li>
+                            <li id="tsmListingUpload"><a href="frmListableDataUpload.aspx"><i class='bx bx-map-alt inner-icn'></i>Upload Listing on Platforms</a></li>
+                            
+            <%--                <li id="lnkProductQcApproveDetail"><a href="ProductQcApproveDetail.aspx"><i class='bx bx-window-close inner-icn'></i>Qc Approval Rejected To Approved</a></li>--%>
+
+                           
+
+                          
+                            
+              
+                      
+
+  
+                </ul>
+                    </li>
+
+
+                         <li class="d-fl actives" id="report">
+                             <div class="icon-link">
+                                    <a href="../REPORTS/ReportDashboard.aspx" class="hegt">
+                                <i class='bx bxs-report'></i>
+                                <span class="link_name">Report</span>
+                                    </a>
+                            <h5 class="home-h5">Report</h5>
+                                    <i class='bx bxs-chevron-down arrow'></i>
+
+                        </div>
+                        <ul class="sub-menu pre-scrollable top-0-close" id="style-1" style="top: -221px;">
+                                  <li id="lnkProductStatusExportReport"><a href="ProductExportinExcelDetail.aspx"><i class='bx bx-customize inner-icn'></i>Product Report</a></li>
+                            <li id="lnkProductStatusReport"><a href="ProductStatuswiseDetail.aspx"><i class='bx bx-data inner-icn'></i>Product Statuswise Report</a></li>
+                            <li id="lnkListingTransactionReport"><a href="ListingTransactionDetail.aspx"><i class='bx bx-purchase-tag inner-icn'></i>Listing Log Report</a></li>          
+
+                      
+                         <%--   <li id="lnkProductBikerStatusReport"><a href="BikerProductStatuswiseDetail.aspx"><i class='bx bx-purchase-tag inner-icn'></i>Biker Statuswise Report</a></li>--%>
+                            <li id="tsmListedTracking"><a href="ProductDateWiseListedDetail.aspx"><i class='bx bx-list-check inner-icn'></i>Listed Report</a></li>
+                            <li id="tsmProductMakeModelSuggestHistory"><a href="MakeModelSuggestPriceHistoryReport.aspx"><i class='bx bx-shield-alt-2 inner-icn'></i>Product Suggest History Report</a></li>
+                                         <li id="tsmProductEachStatusTrackAvgAmt"><a href="ProductEveryStatusDateTimeDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Product Each Status Track Report</a></li>
+                            <li id="lnkProductASMStatusReport"><a href="ProductASMStatuswiseDetail.aspx"><i class='bx bx-notepad inner-icn'></i>ASM Statuswise Report</a></li>
+               
+                            
+                            <li id="tsmTranMobexListedUnlistedReport"><a href="ProductIntervalListedUnlistedDetail.aspx"><i class='bx bxs-bookmarks inner-icn'></i>Interval ListedUnlisted Report</a></li>
+                            
+                            <li id="tsmListedTracking" class=""><a href="ProductDateWiseListedDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Day wise Listing Report</a></li>
+                            <li id="lnkVendorListedActivityDetail" class=""><a href="VendorListedActivityDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Vendor Activity</a></li>
+                            <li id="" class=""><a href="MakeModelPOAvrageAmount.aspx"><i class='bx bx-book-open inner-icn'></i>MakeModelPOAvrageAmount</a></li>     
+                            <li id="tsmRejectedtoApproved"><a href="RejectToAcceptEx.aspx"><i class='bx bx-map-alt inner-icn'></i>Rejected to Approved Report</a></li>
+                            <li id="tsmRelistDetail" class=""><a href="RelistDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Relist Detail</a></li>
+                            <li id="tsmUnlistDetail" class=""><a href="AutoUnlistedDetail.aspx"><i class='bx bx-book-open inner-icn'></i>Unlist Detail</a></li>
+                            <li id="tsmProductMakeModelSuggestHistorywithItemCode"><a href="MakeModelSuggestPriceHistoryReportItemCode.aspx"><i class='bx bx-shield-alt-2 inner-icn'></i>Product Spec Detail with Itemcode Asin</a></li>
+                            <li id="tsmLockPriceHistory"><a href="LockPriceHistory.aspx"><i class='bx bx-shield-alt-2 inner-icn'></i>Lock Price Log Report</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="rc_nav" id="centered_nav">
+                <%--utility--%>
+               <a href="../MM/MMDashboard.aspx" title="MM">MM</a>
+                <a href="../UTILITY/UtilityDashboard.aspx" title="Mobex Seller" class="active">Mobex Seller</a>
+                <a href="../CRM/CustomerRltionShipMngDashBoard.aspx" title="CRM">CRM</a>
+                <a href="../SD/SDDashBoard.aspx" title="SD">SD</a>
+                <a href="../FI/FIDashBoard.aspx" title="Accounting & Finance">FI</a>
+                <a href="../REPORTS/ReportDashboard.aspx" title="Reports">Reports</a>
+                <a href="../UTILITY/UtilityModuleDashboard.aspx" title="Utility" >Utility</a>
+                <a href="../Logistic/LogisticDashBoard.aspx" title="Logistic" >Logistic</a>
+
+              
+
+              <a href="#" class="mb-control log-d bg-hover-none" data-box="#mb-signout" title="Logout"><i class='bx bx-log-out logout-icon float-right' aria-hidden="true"></i></a>
+
+                <a style="padding: 0px" align="right" class="pull-right  bg-hover-none">
+                    <div class="widget-info widget-padding-sm">
+
+                        <div class="widget-big-int plugin-clock" style="color: white;">00:00</div>
+
+                    </div>
+                </a>
+              
+            </div>
+
+          
+
+
+            <!-- END PAGE SIDEBAR -->
+
+            <!-- PAGE CONTENT -->
+            <div class="home-section">
+
+
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                    <div class="home-content">
+                        <%--   <i class='bx bx-menu icn-blue'></i>--%>
+                    </div>
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <!-- END PAGE CONTENT WRAPPER -->
+            </div>
+            <!-- END PAGE CONTENT -->
+        </div>
+
+          <div class="message-box animated fadeIn modal fade" data-sound="alert" id="mb-signout">
+            <div class="modal-dialog login-top">
+                <div class="modal-content">
+                    <div class="modal-header" >LogOut</div>
+                    <div class="modal-body">
+                        <p>Press No if you want to continue work. Press Yes to logout current user.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="pull-right">
+                            <a href="../Login.aspx" class="btn btn-success btn-lg">Yes</a>
+                            <button class="btn btn-default btn-lg mb-control-close">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderMenu" runat="server">
+        </asp:ContentPlaceHolder>
+      
+       
+        <script type="text/javascript" src="../js/plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap.min.js"></script>
+          <script src="../Dashboardjs/sidemenu-active.js"></script>
+        <!-- END PLUGINS -->
+        <!-- THIS PAGE PLUGINS -->
+        <script type='text/javascript' src='../js/plugins/icheck/icheck.min.js'></script>
+        <script type="text/javascript" src="../js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-file-input.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-select.js"></script>
+        <script type="text/javascript" src="../js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+        <!-- END THIS PAGE PLUGINS -->
+        <!-- THIS PAGE PLUGINS -->
+        <script type="text/javascript" src="../js/plugins/fileinput/fileinput.min.js"></script>
+        <!-- END PAGE PLUGINS -->
+        <!-- datatable THIS PAGE PLUGINS -->
+        <script type='text/javascript' src='../js/plugins/icheck/icheck.min.js'></script>
+        <script type="text/javascript" src="../js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <!-- datatable END PAGE PLUGINS -->
+        <!-- FOR SLIDER AND WATCH -->
+        <script type="text/javascript" src="../js/plugins/owl/owl.carousel.min.js"></script>
+        <!-- FOR SLIDER AND WATCH END PAGE PLUGINS -->
+        <!-- START TEMPLATE -->
+        <script type="text/javascript" src="../js/plugins.js"></script>
+        <script type="text/javascript" src="../js/actions.js"></script>
+        <script type="text/javascript" src="../js/plugins/dualListbox/jquery.bootstrap-duallistbox.js"></script>
+        <!-- END JS FOR emoji icon -->
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <!-- END JS FOR emoji icon -->
+
+        <script type='text/javascript' src='../js/plugins/noty/jquery.noty.js'></script>
+        <script type='text/javascript' src='../js/plugins/noty/layouts/topCenter.js'></script>
+        <script type='text/javascript' src='../js/plugins/noty/layouts/topLeft.js'></script>
+        <script type='text/javascript' src='../js/plugins/noty/themes/default.js'></script>
+        <script type="text/javascript" src="../js/custom.js"></script>
+        <script type="text/javascript" src="../js/CustomerRelationShipManagement.js"></script>
+        
+        <script src="../HelpViewer/css_js_plugins/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
+        <script type="text/javascript" src="../js/select2.min.js"></script>
+        <script type="text/javascript" src="../js/MobexSeller.js"></script>
+       
+     
+        <script type="text/javascript">
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if ($("#modal-success").css("display") == "block") {
+                    $("#modal-success").css("display", "none");
+                }
+            }
+        </script>
+        <!-- END TEMPLATE -->
+        <!-- END SCRIPTS -->
+         <script type="text/javascript" href="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script>
+                (function ($) { // Begin jQuery
+                    $(function () { // DOM ready
+                        // If a link has a dropdown, add sub menu toggle.
+                        $('nav ul li a:not(:only-child)').click(function (e) {
+                            $(this).siblings('.nav-dropdown').toggle();
+                            // Close one dropdown when selecting another
+                            $('.nav-dropdown').not($(this).siblings()).hide();
+                            e.stopPropagation();
+                        });
+                        // Clicking away from dropdown will remove the dropdown class
+                        $('html').click(function () {
+                            $('.nav-dropdown').hide();
+                        });
+                        // Toggle open and close nav styles on click
+                        $('#nav-toggle').click(function () {
+                            $('nav ul').slideToggle();
+                        });
+                        // Hamburger to X toggle
+                        $('#nav-toggle').on('click', function () {
+                            this.classList.toggle('active');
+                        });
+                    }); // end DOM ready
+                })(jQuery); // end jQuery
+        </script>
+    </form>
+    <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+
+    <!-- START PRELOADS -->
+</body>
+</html>

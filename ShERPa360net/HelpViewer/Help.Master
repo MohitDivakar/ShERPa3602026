@@ -1,0 +1,226 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Help.master.cs" Inherits="ShERPa360net.HelpViewer.Help" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>ShERPa 360 Help Viewer</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+
+    <style type="text/css">
+      
+    </style>
+
+
+
+
+
+
+
+
+    <link runat="server" rel="shortcut icon" href="~/img/favicon.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="css_js_plugins/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css_js_plugins/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css_js_plugins/bower_components/Ionicons/css/ionicons.min.css" />
+    <link rel="stylesheet" href="css_js_plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="css_js_plugins/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="css_js_plugins/plugins/iCheck/all.css" />
+    <link rel="stylesheet" href="css_js_plugins/plugins/timepicker/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="css_js_plugins/bower_components/select2/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="css_js_plugins/dist/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="css_js_plugins/dist/css/skins/_all-skins.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+    <link rel="stylesheet" href="css_js_plugins/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+    <script src="css_js_plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="css_js_plugins/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="css_js_plugins/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="css_js_plugins/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="css_js_plugins/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="css_js_plugins/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="css_js_plugins/bower_components/moment/min/moment.min.js"></script>
+    <script src="css_js_plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="css_js_plugins/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="css_js_plugins/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="css_js_plugins/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="css_js_plugins/plugins/iCheck/icheck.min.js"></script>
+    <script src="css_js_plugins/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="css_js_plugins/dist/js/adminlte.min.js"></script>
+    <script src="css_js_plugins/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="css_js_plugins/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="css_js_plugins/dist/js/dataTables.buttons.min.js"></script>
+    <script src="css_js_plugins/dist/js/jszip.min.js"></script>
+    <script src="css_js_plugins/dist/js/buttons.html5.min.js"></script>
+    <script src="css_js_plugins/dist/js/common.js"></script>
+    <script src="css_js_plugins/dist/js/jquery.cookie.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="js/modernizr.js"></script>
+    <link rel="stylesheet" media="screen" href="css/screen.css" />
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/ddaccordion.js"></script>
+
+    <script type='text/javascript' src="js/jquery.cookie.js"></script>
+    <script type='text/javascript' src="js/jquery.hoverIntent.minified.js"></script>
+    <script type='text/javascript' src="js/jquery.dcjqaccordion.2.7.min.js"></script>
+    <script type="text/javascript" async="" src="js/ga.js"></script>
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19333055-1']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <link type="text/css" rel="stylesheet" href="css/styles.css" />
+
+
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container-page">
+            <header role="banner" style="background-color: #3d2a70;">
+                <table>
+                    <tr>
+                        <%--<td>
+                            <img style="padding-left: 10px; width: 90px; height: 50px;" src="Images/360-1.png" />
+
+                        </td>--%>
+                        <td>
+                            <div style="font-size: 36px; color: white; padding-left: 300px; width: 720px;">
+                                ShERPa 360 Help Viewer
+                            </div>
+                        </td>
+                        <%--<td>
+                            <img style="padding-left: 10px; width: 300px; height: 50px;" src="Images/qarmatek_bottom-1.png" />
+                        </td>--%>
+                    </tr>
+                </table>
+            </header>
+            <aside role="complementary">
+                <header role="banner" style="background: #f5f5f5 url(../img/bg.png) left top repeat;">
+                    <table>
+                        <tr>
+                            <td>
+                                <img style="padding-left: 10px; width: 90px; height: 50px;" src="Images/360-1.png" />
+
+                            </td>
+                            <%--  <td>
+                                <div style="font-size: 36px; color: white; padding-left: 160px; width: 720px;">
+                                    ShERPa 360 Help Viewer
+                                </div>
+                            </td>--%>
+                            <td style="padding-left: 900px !important;">
+                                <img style="padding-left: 10px; width: 220px; height: 50px;" src="Images/qarmatek_bottom-1.png" />
+                            </td>
+                        </tr>
+                    </table>
+                </header>
+                <%--<h2>ShERPa 360</h2>--%>
+                <%--<p>ShERPa Description will be here...</p>--%>
+            </aside>
+
+
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar Menu -->
+                    <ul class="sidebar-menu" data-widget="tree" id="MenuList" runat="server">
+                        <li class="header" style="color: #faa61a !important;">MAIN NAVIGATION</li>
+
+                        <li runat="server"><a href="frmLogin.aspx"><i class="fa fa-circle-o"></i>Login Screen</a></li>
+
+                        <li class="treeview" title="tsmTranCRM" runat="server"><a href="#"><i class="fa fa-laptop"></i><span>MM</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                            <ul class="treeview-menu">
+                                <li runat="server"><a href="frmMR.aspx"><i class="fa fa-circle-o"></i>Create MR</a></li>
+                                <li runat="server"><a href="frmAprvMR.aspx"><i class="fa fa-circle-o"></i>Approve MR</a></li>
+                                <li runat="server"><a href="frmApprovedMR.aspx"><i class="fa fa-circle-o"></i>Approved MR</a></li>
+
+
+
+                                <li runat="server"><a href="frmPR.aspx"><i class="fa fa-circle-o"></i>Create PR</a></li>
+                                <li runat="server"><a href="frmAprvPR.aspx"><i class="fa fa-circle-o"></i>Approve PR</a></li>
+
+                                <li runat="server"><a href="frmIST.aspx"><i class="fa fa-circle-o"></i>IST</a></li>
+
+                            </ul>
+                        </li>
+
+
+                        <%-- <li class="treeview" title="tsmTranCRM" runat="server"><a href="#"><i class="fa fa-laptop"></i><span>Purchase</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                        </li>
+
+                        <li class="treeview" title="tsmTranCRM" runat="server"><a href="#"><i class="fa fa-laptop"></i><span>Production</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                        </li>
+
+                        <li class="treeview" title="tsmTranCRM" runat="server"><a href="#"><i class="fa fa-laptop"></i><span>Marketing</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                        </li>
+
+                        <li class="treeview" title="tsmTranCRM" runat="server"><a href="#"><i class="fa fa-laptop"></i><span>JRM</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                        </li>
+
+                        <li class="treeview" title="tsmTranCRM" runat="server"><a href="#"><i class="fa fa-laptop"></i><span>Information Technology</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                        </li>
+
+                        <li class="treeview" title="tsmTranCRM" runat="server"><a href="#"><i class="fa fa-laptop"></i><span>Account & Finance</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                        </li>
+
+                        <li class="treeview" title="tsmTranCRM" runat="server"><a href="#"><i class="fa fa-laptop"></i><span>CRM</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                        </li>--%>
+                    </ul>
+                    <!-- /.sidebar-menu -->
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <script src="js/jquery.min.js"></script>
+            <script src="js/main.js"></script>
+            <div style="text-align: right; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                <small role="complementary">Copyright <span>©</span><a target="_blank" style="color: #4695d3" href="http://www.qarmatek.com"> Qarmatek Services Pvt. Ltd. </a>2021
+                
+                </small>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

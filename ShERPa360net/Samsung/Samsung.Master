@@ -1,0 +1,538 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Samsung.master.cs" Inherits="ShERPa360net.Samsung.Samsung" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>ShERPa 360°</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../img/favicon.png" sizes="32x32" type="image/x-icon">
+    <%--<a href="Report.Master">Report.Master</a>--%>
+    <!-- END META SECTION -->
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="../css/theme-default.css" />
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="../HelpViewer/css_js_plugins/plugins/timepicker/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css" type="text/css" />
+    <!-- EOF CSS INCLUDE -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="../Dashboardcss/menu.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        .rptlist-scrollbar {
+            max-height: 600px !important;
+        }
+    </style>
+
+     <style>
+        .notification {
+            /*background-color: #555;*/
+            color: white;
+            text-decoration: none;
+            padding: 15px 26px;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+            .notification:hover {
+                background: red;
+            }
+
+            .notification .badge {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                padding: 0px 5px;
+                border-radius: 50%;
+                background-color: red;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="progress" class="modalloading" style="display: none!important;">
+            <div class="center">
+                <img src="../img/loader4.gif" class="centerimg" />
+            </div>
+        </div>
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="modal modal-success fade" id="modal-success" data-backdrop="static" style="top: 50px !important;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                        <h4><i class="icon fa fa-check"></i>&nbsp;Success</h4>
+                        <asp:Label ID="lblSuccessMsg" runat="server"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal modal-danger fade" id="modal-danger" data-backdrop="static" style="top: 50px !important;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i>&nbsp;Error</h4>
+                        <asp:Label ID="lblErrMsg" runat="server"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal modal-warning fade" id="modal-warning" data-backdrop="static" style="top: 50px !important;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="alert alert-warning alert-dismissible">
+                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i>&nbsp;Alert</h4>
+                        <asp:Label ID="lblAlertMsg" runat="server"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="page-container">
+
+            <div class="menubar">
+                <section class="navigation">
+                    <div class="nav-container">
+                        <div class="brand">
+                            <a href="../HomePage.aspx">
+                                <img src="../Dashboardimg/logo.png" /></a>
+                            <label id="labelUserName" runat="server"></label>
+
+                        </div>
+                        <nav>
+                            <div class="nav-mobile"><a id="nav-toggle" href="#"><span></span></a></div>
+                            <ul class="nav-list pt-5">
+                                <li>
+                                    <a href="../HomePage.aspx"><i class='bx bx-camera-home'></i>Home</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a>
+                                </li>
+
+                                <%--<li>
+                                    <a href="#"><i class='bx bxs-dock-right'></i>List</a>
+                                    <ul class="nav-dropdown">
+                                        <li id="tsmrptOCRScanReport" class=""><a href="rptOCRScanReport.aspx"><i class='bx bx-list-check inner-icn'></i>OCR Scan Detail</a></li>
+                                        <li id="lnkMRReport" class=""><a href="rptOpenMR.aspx"><i class='bx bx-lock-open-alt inner-icn'></i>Open MR</a></li>
+                                        <li id="lnkMRStatusReport" class=""><a href="rptMRStatus.aspx"><i class='bx bx-list-check inner-icn'></i>MR Status</a></li>
+                                        <li id="lnkMRToPurchaseBill" class=""><a href="MRToPBDetail.aspx"><i class='bx bxs-devices inner-icn'></i>MR To Purchase Bill</a></li>
+                                        <li id="lnkGRNInvoice" class=""><a href="rptGRNInvoice.aspx"><i class='bx bxs-report inner-icn'></i>GRN Invoice Report</a></li>
+                                        <li id="lnkSafetyReport" class=""><a href="rptSafetyReport.aspx"><i class='bx bxs-bank inner-icn'></i>Safety Report</a></li>
+                                        <li id="lnkSOPending" class=""><a href="rptSOAging.aspx"><i class='bx bx-list-check inner-icn'></i>Pending SO Report</a></li>
+                                        <li id="lnkComplianceReport" class=""><a href="rptComplianceReport.aspx"><i class='bx bx-list-check inner-icn'></i>Compliance Report</a></li>
+                                        <li id="lnkDCReport" class=""><a href="rptDCSummary.aspx"><i class='bx bx-file-find inner-icn'></i>DC Summary Report</a></li>
+                                        <li id="lnkBikerReport" class=""><a href="rptBikerVisitReport.aspx"><i class='bx bx-current-location inner-icn'></i>Biker Visit Report</a></li>
+                                        <li id="lnkVendorReport" class=""><a href="rptVendorStatus.aspx"><i class='bx bx-stats inner-icn'></i>Vendor Status Report</a></li>
+                                        <li id="tsmRptMMPOReg" class=""><a href="rptPORegister.aspx"><i class='bx bxs-edit inner-icn'></i>PO Register</a></li>
+                                        <li id="tsmRptONSMMPOReg" class=""><a href="rptONSPO.aspx"><i class='bx bxs-edit inner-icn'></i>ONS PO Register</a></li>
+                                        <li id="tsmRptAprvMMPOReg" class=""><a href="rptApprovedPO.aspx"><i class='bx bxs-edit inner-icn'></i>Approved PO</a></li>
+                                        <li id="tsmMRToPurchaseBill" class=""><a href="rptMRReport.aspx"><i class='bx bxs-report inner-icn'></i>MR Report</a></li>
+                                        <li id="tsmBikerRejectionReport" class=""><a href="rptBikerRejectionReport.aspx"><i class='bx bxs-tag-x inner-icn'></i>Biker Rejection Report</a></li>
+                                        <li id="tsmRptMMPBReg" class=""><a href="rptPBRegister.aspx"><i class='bx bx-message-edit inner-icn'></i>PB Register</a></li>
+                                        <li id="tsmRptBDODailyActivity" class=""><a href="rptBikerVisitFeedBackReport.aspx"><i class='bx bxl-dailymotion inner-icn'></i>BDO Daily Activity Report</a></li>
+                                        <li id="tsmrptSMTree" class=""><a href="rptSMTree.aspx"><i class='bx bx-street-view inner-icn'></i>SM Tree</a></li>
+                                        <li id="tsmrptAginBucket" class=""><a href="AginBucket.aspx"><i class='bx bx-basket inner-icn'></i>Aging Buckets</a></li>
+                                        <li id="tstfrmmslrepot" class=""><a href="frmMSLReport.aspx"><i class='bx bxs-report inner-icn'></i>MSL Report</a></li>
+                                        <li id="tsmMaterialMovement" class=""><a href="rptMaterialMovement.aspx"><i class='bx bx-package inner-icn'></i>Material Movement</a></li>
+                                        <li id="tsmrptJobSheetItemcode" class=""><a href="rptJobSheetItemcode.aspx"><i class='bx bx-spreadsheet inner-icn'></i>JobSheet</a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#"><i class='bx bxs-report'></i>Report</a>
+                                    <ul class="nav-dropdown">
+                                        <li id="tsmSalesOrderRegister" class=""><a href="rptSORegister.aspx"><i class='bx bx-list-check inner-icn'></i>Sales Order Register</a></li>
+                                        <li id="tsmExtendedWarranty" class=""><a href="rptExtendedWarranty.aspx"><i class='bx bx-list-check inner-icn'></i>Extended Warranty</a></li>
+                                        <li id="tsmRptCRMCallLogs" class=""><a href="rptCRM.aspx"><i class='bx bx-list-check inner-icn'></i>Call Log Report</a></li>
+                                        <li id="tsmRptCRMCallLogs1" class=""><a href="rptAllCallData.aspx"><i class='bx bx-list-check inner-icn'></i>Call Data Report</a></li>
+                                        <li id="tsmRptCRMCallLogs2" class=""><a href="rptCRMGrab.aspx"><i class='bx bx-list-check inner-icn'></i>Grab Data Report</a></li>
+                                        <li id="tsmUtlWhatsappMsg" class=""><a href="WAMessageReport.aspx"><i class='bx bx-list-check inner-icn'></i>WA Msg Log Report</a></li>
+                                        <li id="tsmPhyDocVarData" class=""><a href="rptPhyDocVar.aspx"><i class='bx bx-list-check inner-icn'></i>Phy Doc Var Report</a></li>
+                                        <li id="tsmMobexRefurbStockAging" class=""><a href="rptReturnHistorySummary.aspx"><i class='bx bx-list-check inner-icn'></i>Mobex Refurb Stock Ageing</a></li>
+                                        <li id="tsmRptMMFTD" class=""><a href="rptStockFTD.aspx"><i class='bx bx-list-check inner-icn'></i>Daily Stock Report</a></li>
+                                        <li id="tsmTranCRMClaimReq" class=""><a href="rptClaimData.aspx"><i class='bx bx-list-check inner-icn'></i>Claim Report</a></li>
+                                        <li id="tsmRptListableData" class=""><a href="rptListableData.aspx"><i class='bx bx-list-check inner-icn'></i>Listable Data</a></li>
+                                        <li id="tsmTranMMMIRPOINV" class=""><a href="frmAPRVREJPB.aspxa.aspx"><i class='bx bx-list-check inner-icn'></i>Open SO Status</a></li>
+                                        <li id="rptClaimPLData" class=""><a href="rptClaimPLData.aspx"><i class='bx bx-list-check inner-icn'></i>Claim P&L Data</a></li>
+                                        <li id="rptPoVsSd" class=""><a href="rptPurchaseVsSale.aspx"><i class='bx bx-list-check inner-icn'></i>Po Vs Sd</a></li>
+                                        <li id="rptLogistic" class=""><a href="rptLogistic.aspx"><i class='bx bx-list-check inner-icn'></i>Logistic Report</a></li>
+                                        <li id="tsmRptBrandwiseListing" class=""><a href="rptBrandwiselisting.aspx"><i class='bx bxl-dailymotion inner-icn'></i>Brand wise Listing Report</a></li>
+                                        <li id="tsmRptGradewiseListing" class=""><a href="rptGradewiselisting.aspx"><i class='bx bxl-dailymotion inner-icn'></i>Grade wise Listing Report</a></li>
+                                        <li id="tsmSalesInvoiceRegister" class=""><a href="SalesInvoiceRegister.aspx"><i class='bx bx-list-check inner-icn'></i>Sales Invoice</a></li>
+                                        <li id="tsmSKUUPLOAD" class=""><a href="SkuUpload.aspx"><i class='bx bx-list-check inner-icn'></i>SKU Upload</a></li>
+                                        <li id="rptClaimPLData" class=""><a href="rptJSReturnDetails.aspx"><i class='bx bx-list-check inner-icn'></i>JS Return Data</a></li>
+                                        <li id="tsmRptSDSIReg" class=""><a href="rptPendingSCM.aspx"><i class='bx bx-list-check inner-icn'></i>Pending Commission Invoice</a></li>
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <a href="#"><i class='bx bxs-report'></i>Price</a>
+                                    <ul class="nav-dropdown">
+
+                                        <li id="tsmKeepaPrice" class=""><a href="rptKeepaPrice.aspx"><i class='bx bx-list-check inner-icn'></i>Keepa Price</a></li>
+                                        <li id="tsmRptSDSIReg" class=""><a href="rptSalesRegister.aspx"><i class='bx bx-list-check inner-icn'></i>Sales Register</a></li>
+                                        <li id="tsmProductVendorLedgerReport" class=""><a href="rptVendorLedgerReport.aspx"><i class='bx bx-list-check inner-icn'></i>Vendor Ledger Report</a></li>
+
+                                    </ul>
+
+                                </li>
+
+                                <li>
+                                    <a href="#"><i class='bx bxs-report'></i>FBA</a>
+                                    <ul class="nav-dropdown">
+                                        <li id="tsmRptFBM" class=""><a href="rptFBAReport.aspx"><i class='bx bx-list-check inner-icn'></i>FBM - FBA Report</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#"><i class='bx bxs-report'></i>Account</a>
+                                    <ul class="nav-dropdown">
+                                        <li id="tsmRptTRNAgeing" class=""><a href="rptTRNJobAgeing.aspx"><i class='bx bx-list-check inner-icn'></i>TRN to New Job Ageing</a></li>
+                                        <li id="tsmRptBudgetReport" class=""><a href="rptBudgetReport.aspx"><i class='bx bx-list-check inner-icn'></i>Budget Report</a></li>
+                                    </ul>
+
+                                </li>
+
+                                <li>
+                                    <a href="#"><i class='bx bxs-report'></i>Sales</a>
+                                    <ul class="nav-dropdown">
+                                        <li id="tsmRptSDOpenSO" class=""><a href="rptSalesDeviation.aspx"><i class='bx bx-list-check inner-icn'></i>Sales Deviation Report</a></li>
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <a href="#"><i class='bx bxs-report'></i>CRM</a>
+                                    <ul class="nav-dropdown">
+                                        <li id="tsmRptCheckList" class=""><a href="rptCheckList.aspx"><i class='bx bx-list-check inner-icn'></i>Laptop Check List Report</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#"><i class='bx bxs-report'></i>RTV</a>
+                                    <ul class="nav-dropdown">
+                                        <li id="tsmRptRTV" class=""><a href="rptRTVData.aspx"><i class='bx bx-list-check inner-icn'></i>RTV Data</a></li>
+                                    </ul>
+                                </li>--%>
+
+                                <li>
+                                    <a href="#"><i class='bx bxs-report'></i>Samsung</a>
+                                    <ul class="nav-dropdown">
+                                        <li id="tsmTranUploadComplaint1" class=""><a href="frmJobUpload.aspx"><i class='bx bx-list-check inner-icn'></i>Upload Service Order</a></li>
+                                        <li id="tsmTranViewComplaint1" class=""><a href="frmViewComplaint.aspx"><i class='bx bx-list-check inner-icn'></i>View Service Order</a></li>
+                                        <li id="frmTCR1" class=""><a href="frmViewTCR.aspx"><i class='bx bx-list-check inner-icn'></i>View TCR</a></li>
+                                        <li id="frmTCRRCVDCM1" class=""><a href="frmTCRRCVDCM.aspx"><i class='bx bx-list-check inner-icn'></i>Receive TCR AMT at Center</a></li>
+                                        <li id="frmTCRRCVDAC1" class=""><a href="frmTCRRCVDAC.aspx"><i class='bx bx-list-check inner-icn'></i>Receive TCR AMT at Account</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#"><i class='bx bxs-report'></i>Reports</a>
+                                    <ul class="nav-dropdown">
+                                        <li id="rptTCRReport1" class=""><a href="rptTCRReport.aspx"><i class='bx bx-list-check inner-icn'></i>TCR Reports</a></li>
+                                        <li id="rptTCRReport2" class=""><a href="rptTCRLedger.aspx"><i class='bx bx-list-check inner-icn'></i>TCR Ledger</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </section>
+
+
+            </div>
+
+
+            <div class="sidebar close">
+
+                <a href="../HomePage.aspx">
+                    <div class="logo-details">
+                        <img src="../Dashboardimg/logo.png" />
+                    </div>
+                </a>
+                <label id="lblUserName" runat="server"></label>
+                <ul class="nav-links pt-5">
+                    <li>
+
+                        <i class='bx bx-right-arrow-alt icn-blue mob-display'></i>
+                    </li>
+                    <li class="d-fl">
+                        <a href="../HomePage.aspx" class="hegt">
+                            <i class='bx bx-camera-home'></i>
+                            <span class="link_name">Home</span>
+                        </a>
+                        <h5 class="home-h5">Home</h5>
+                    </li>
+
+                    <li class="d-fl actives" id="dashboard">
+                        <a href="SamsungDashboard.aspx" class="hegt">
+                            <i class='bx bxs-dashboard'></i>
+                            <span class="link_name">Dashboard</span>
+                        </a>
+                        <h5 class="home-h5">Dashboard</h5>
+                    </li>
+
+
+
+
+                    <li class="d-fl" id="samsung">
+                        <div class="icon-link">
+                            <a href="#" class="hegt">
+                                <i class='bx bxs-report'></i>
+                                <span class="link_name">Samsung</span>
+                            </a>
+                            <h5 class="home-h5">Samsung</h5>
+                            <i class='bx bxs-chevron-down arrow'></i>
+
+                        </div>
+                        <ul class="sub-menu pre-scrollable " id="style-1">
+                            <li id="tsmTranUploadComplaint" class=""><a href="frmJobUpload.aspx"><i class='bx bx-list-check inner-icn'></i>Upload Service Order</a></li>
+                            <li id="tsmTranViewComplaint" class=""><a href="frmViewComplaint.aspx"><i class='bx bx-list-check inner-icn'></i>View Service Order</a></li>
+                            <li id="frmTCR" class=""><a href="frmViewTCR.aspx"><i class='bx bx-list-check inner-icn'></i>View TCR</a></li>
+                            <li id="frmTCRRCVDCM" class=""><a href="frmTCRRCVDCM.aspx"><i class='bx bx-list-check inner-icn'></i>Receive TCR AMT at Center</a></li>
+                            <li id="frmTCRRCVDAC" class=""><a href="frmTCRRCVDAC.aspx"><i class='bx bx-list-check inner-icn'></i>Receive TCR AMT at Account</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="d-fl" id="reports">
+                        <div class="icon-link">
+                            <a href="#" class="hegt">
+                                <i class='bx bxs-report'></i>
+                                <span class="link_name">Reports</span>
+                            </a>
+                            <h5 class="home-h5">Reports</h5>
+                            <i class='bx bxs-chevron-down arrow'></i>
+
+                        </div>
+                        <ul class="sub-menu pre-scrollable " id="style-2">
+                            <li id="rptTCRReport" class=""><a href="rptTCRReport.aspx"><i class='bx bx-list-check inner-icn'></i>TCR Reports</a></li>
+                            <li id="rptTCRReport3" class=""><a href="rptTCRLedger.aspx"><i class='bx bx-list-check inner-icn'></i>TCR Ledger</a></li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </div>
+
+            <div class="rc_nav" id="centered_nav">
+                <a href="../MM/MMDashboard.aspx" title="MM">MM</a>
+                <a href="../UTILITY/UtilityDashboard.aspx" title="Mobex Seller">Mobex Seller</a>
+                <a href="../CRM/CustomerRltionShipMngDashBoard.aspx" title="CRM">CRM</a>
+                <a href="../SD/SDDashBoard.aspx" title="SD">SD</a>
+                <a href="../FI/FIDashBoard.aspx" title="Accounting & Finance">FI</a>
+                <a href="ReportDashboard.aspx" title="Reports">Reports</a>
+                <a href="../UTILITY/UtilityModuleDashboard.aspx" title="Utility">Utility</a>
+                <a href="../Logistic/LogisticDashBoard.aspx" title="Logistic">Logistic</a>
+                <a href="../Samsung/frmTCR.aspx" title="Samsung" class="active">Samsung</a>
+
+                <a href="#" class="mb-control log-d bg-hover-none" data-box="#mb-signout" title="Logout"><i class='bx bx-log-out logout-icon float-right' aria-hidden="true"></i></a>
+
+                <a style="padding: 0px" align="right" class="pull-right  bg-hover-none">
+                    <div class="widget-info widget-padding-sm">
+
+                        <div class="widget-big-int plugin-clock" style="color: white;">00:00</div>
+                    </div>
+                </a>
+
+                 <a href="../CRM/frmCRMNotification.aspx" class="notification fa fa-bell" aria-hidden="true">
+                    <span class="badge">
+                        <asp:Label ID="lblNotificationCnt" runat="server" Text="0"></asp:Label>
+                    </span>
+                </a>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- END PAGE SIDEBAR -->
+
+            <!-- PAGE CONTENT -->
+            <div class="home-section">
+
+
+                <!-- END BREADCRUMB -->
+
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                    <div class="home-content">
+                    </div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <!-- END PAGE CONTENT WRAPPER -->
+            </div>
+            <!-- END PAGE CONTENT -->
+        </div>
+
+
+
+
+
+
+
+        <div class="message-box animated fadeIn modal fade" data-sound="alert" id="mb-signout">
+            <div class="modal-dialog login-top">
+                <div class="modal-content">
+                    <div class="modal-header">LogOut</div>
+                    <div class="modal-body">
+                        <p>Press No if you swant to continue work. Press Yes to logout current user.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="pull-right">
+                            <a href="../Login.aspx" class="btn btn-success btn-lg">Yes</a>
+                            <button class="btn btn-default btn-lg mb-control-close">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderMenu" runat="server">
+        </asp:ContentPlaceHolder>
+
+
+        <script type="text/javascript" src="../js/plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap.min.js"></script>
+        <script src="../Dashboardjs/sidemenu-active.js"></script>
+        <!-- END PLUGINS -->
+
+        <!-- THIS PAGE PLUGINS -->
+        <script type='text/javascript' src='../js/plugins/icheck/icheck.min.js'></script>
+        <script type="text/javascript" src="../js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-file-input.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-select.js"></script>
+        <script type="text/javascript" src="../js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+        <!-- END THIS PAGE PLUGINS -->
+
+
+        <!-- THIS PAGE PLUGINS -->
+
+        <script type="text/javascript" src="../js/plugins/fileinput/fileinput.min.js"></script>
+        <!-- END PAGE PLUGINS -->
+
+
+        <!-- datatable THIS PAGE PLUGINS -->
+        <script type='text/javascript' src='../js/plugins/icheck/icheck.min.js'></script>
+        <script type="text/javascript" src="../js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+
+        <script type="text/javascript" src="../js/plugins/datatables/jquery.dataTables.min.js"></script>
+
+        <!-- datatable END PAGE PLUGINS -->
+
+        <!-- FOR SLIDER AND WATCH -->
+        <script type="text/javascript" src="../js/plugins/owl/owl.carousel.min.js"></script>
+        <!-- FOR SLIDER AND WATCH END PAGE PLUGINS -->
+
+        <!-- START TEMPLATE -->
+
+        <script type="text/javascript" src="../js/plugins.js"></script>
+        <script type="text/javascript" src="../js/actions.js"></script>
+
+        <script type="text/javascript" src="../js/plugins/dualListbox/jquery.bootstrap-duallistbox.js"></script>
+
+        <!-- END JS FOR emoji icon -->
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <!-- END JS FOR emoji icon -->
+
+        <script type='text/javascript' src='../js/plugins/noty/jquery.noty.js'></script>
+        <script type='text/javascript' src='../js/plugins/noty/layouts/topCenter.js'></script>
+        <script type='text/javascript' src='../js/plugins/noty/layouts/topLeft.js'></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../js/plugins/bootstrap/bootstrap-timepicker.min.js"></script>
+        <%--<script type="text/javascript" src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>--%>
+        <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+        <%--<script type="text/javascript" src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>--%>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+        <script type='text/javascript' src='../js/plugins/noty/themes/default.js'></script>
+        <script type="text/javascript" src="../js/select2.min.js"></script>
+        <script type="text/javascript" src="../js/custom.js"></script>
+        <script type="text/javascript" src="../js/MobexSeller.js"></script>
+        <script type="text/javascript" href="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <!-- Chart Js -->
+
+        <script type="text/javascript">
+              // When the user clicks anywhere outside of the modal, close it
+              //window.onclick = function (event) {
+              //    if ($("#modal-success").css("display") == "block") {
+              //        $("#modal-success").css("display", "none");
+              //    }
+              //}
+        </script>
+        <script>
+            (function ($) { // Begin jQuery
+                $(function () { // DOM ready
+                    // If a link has a dropdown, add sub menu toggle.
+                    $('nav ul li a:not(:only-child)').click(function (e) {
+                        $(this).siblings('.nav-dropdown').toggle();
+                        // Close one dropdown when selecting another
+                        $('.nav-dropdown').not($(this).siblings()).hide();
+                        e.stopPropagation();
+                    });
+                    // Clicking away from dropdown will remove the dropdown class
+                    $('html').click(function () {
+                        $('.nav-dropdown').hide();
+                    });
+                    // Toggle open and close nav styles on click
+                    $('#nav-toggle').click(function () {
+                        $('nav ul').slideToggle();
+                    });
+                    // Hamburger to X toggle
+                    $('#nav-toggle').on('click', function () {
+                        this.classList.toggle('active');
+                    });
+                }); // end DOM ready
+            })(jQuery); // end jQuery
+        </script>
+    </form>
+    <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+</body>
+</html>

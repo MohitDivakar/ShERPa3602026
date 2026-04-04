@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="xsdSafetyReport" targetNamespace="http://tempuri.org/xsdSafetyReport.xsd" xmlns:mstns="http://tempuri.org/xsdSafetyReport.xsd" xmlns="http://tempuri.org/xsdSafetyReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="xsdSafetyReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="xsdSafetyReport" msprop:Generator_UserDSName="xsdSafetyReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DSSAFETYREPORT" msprop:Generator_TableClassName="DSSAFETYREPORTDataTable" msprop:Generator_TableVarName="tableDSSAFETYREPORT" msprop:Generator_TablePropName="DSSAFETYREPORT" msprop:Generator_RowDeletingName="DSSAFETYREPORTRowDeleting" msprop:Generator_RowChangingName="DSSAFETYREPORTRowChanging" msprop:Generator_RowEvHandlerName="DSSAFETYREPORTRowChangeEventHandler" msprop:Generator_RowDeletedName="DSSAFETYREPORTRowDeleted" msprop:Generator_UserTableName="DSSAFETYREPORT" msprop:Generator_RowChangedName="DSSAFETYREPORTRowChanged" msprop:Generator_RowEvArgName="DSSAFETYREPORTRowChangeEvent" msprop:Generator_RowClassName="DSSAFETYREPORTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="REPORTDATE" msprop:Generator_ColumnVarNameInTable="columnREPORTDATE" msprop:Generator_ColumnPropNameInRow="REPORTDATE" msprop:Generator_ColumnPropNameInTable="REPORTDATEColumn" msprop:Generator_UserColumnName="REPORTDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="LOCATION" msprop:Generator_ColumnVarNameInTable="columnLOCATION" msprop:Generator_ColumnPropNameInRow="LOCATION" msprop:Generator_ColumnPropNameInTable="LOCATIONColumn" msprop:Generator_UserColumnName="LOCATION" type="xs:string" minOccurs="0" />
+              <xs:element name="INSPECTBY" msprop:Generator_ColumnVarNameInTable="columnINSPECTBY" msprop:Generator_ColumnPropNameInRow="INSPECTBY" msprop:Generator_ColumnPropNameInTable="INSPECTBYColumn" msprop:Generator_UserColumnName="INSPECTBY" type="xs:string" minOccurs="0" />
+              <xs:element name="CREATEBY" msprop:Generator_ColumnVarNameInTable="columnCREATEBY" msprop:Generator_ColumnPropNameInRow="CREATEBY" msprop:Generator_ColumnPropNameInTable="CREATEBYColumn" msprop:Generator_UserColumnName="CREATEBY" type="xs:string" minOccurs="0" />
+              <xs:element name="AREA" msprop:Generator_ColumnVarNameInTable="columnAREA" msprop:Generator_ColumnPropNameInRow="AREA" msprop:Generator_ColumnPropNameInTable="AREAColumn" msprop:Generator_UserColumnName="AREA" type="xs:string" minOccurs="0" />
+              <xs:element name="QUESTION" msprop:Generator_ColumnVarNameInTable="columnQUESTION" msprop:Generator_ColumnPropNameInRow="QUESTION" msprop:Generator_ColumnPropNameInTable="QUESTIONColumn" msprop:Generator_UserColumnName="QUESTION" type="xs:string" minOccurs="0" />
+              <xs:element name="RESULT" msprop:Generator_ColumnVarNameInTable="columnRESULT" msprop:Generator_ColumnPropNameInRow="RESULT" msprop:Generator_ColumnPropNameInTable="RESULTColumn" msprop:Generator_UserColumnName="RESULT" type="xs:string" minOccurs="0" />
+              <xs:element name="REMARKS" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_UserColumnName="REMARKS" type="xs:string" minOccurs="0" />
+              <xs:element name="IMAGE" msprop:Generator_ColumnVarNameInTable="columnIMAGE" msprop:Generator_ColumnPropNameInRow="IMAGE" msprop:Generator_ColumnPropNameInTable="IMAGEColumn" msprop:Generator_UserColumnName="IMAGE" type="xs:string" minOccurs="0" />
+              <xs:element name="CREATEDATE" msprop:Generator_ColumnVarNameInTable="columnCREATEDATE" msprop:Generator_ColumnPropNameInRow="CREATEDATE" msprop:Generator_ColumnPropNameInTable="CREATEDATEColumn" msprop:Generator_UserColumnName="CREATEDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="QUESTIONID" msprop:Generator_ColumnVarNameInTable="columnQUESTIONID" msprop:Generator_ColumnPropNameInRow="QUESTIONID" msprop:Generator_ColumnPropNameInTable="QUESTIONIDColumn" msprop:Generator_UserColumnName="QUESTIONID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DSSAFETYREPORTIMAGES" msprop:Generator_TableClassName="DSSAFETYREPORTIMAGESDataTable" msprop:Generator_TableVarName="tableDSSAFETYREPORTIMAGES" msprop:Generator_RowChangedName="DSSAFETYREPORTIMAGESRowChanged" msprop:Generator_TablePropName="DSSAFETYREPORTIMAGES" msprop:Generator_RowDeletingName="DSSAFETYREPORTIMAGESRowDeleting" msprop:Generator_RowChangingName="DSSAFETYREPORTIMAGESRowChanging" msprop:Generator_RowEvHandlerName="DSSAFETYREPORTIMAGESRowChangeEventHandler" msprop:Generator_RowDeletedName="DSSAFETYREPORTIMAGESRowDeleted" msprop:Generator_RowClassName="DSSAFETYREPORTIMAGESRow" msprop:Generator_UserTableName="DSSAFETYREPORTIMAGES" msprop:Generator_RowEvArgName="DSSAFETYREPORTIMAGESRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RPTID" msprop:Generator_ColumnVarNameInTable="columnRPTID" msprop:Generator_ColumnPropNameInRow="RPTID" msprop:Generator_ColumnPropNameInTable="RPTIDColumn" msprop:Generator_UserColumnName="RPTID" type="xs:string" minOccurs="0" />
+              <xs:element name="QUESTIONID" msprop:Generator_ColumnVarNameInTable="columnQUESTIONID" msprop:Generator_ColumnPropNameInRow="QUESTIONID" msprop:Generator_ColumnPropNameInTable="QUESTIONIDColumn" msprop:Generator_UserColumnName="QUESTIONID" type="xs:string" minOccurs="0" />
+              <xs:element name="IMAGE" msprop:Generator_ColumnVarNameInTable="columnIMAGE" msprop:Generator_ColumnPropNameInRow="IMAGE" msprop:Generator_ColumnPropNameInTable="IMAGEColumn" msprop:Generator_UserColumnName="IMAGE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

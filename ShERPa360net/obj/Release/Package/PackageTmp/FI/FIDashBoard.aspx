@@ -1,0 +1,13 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FI/MasterFI.Master" AutoEventWireup="true" CodeBehind="FIDashBoard.aspx.cs" Inherits="ShERPa360net.FI.FIDashBoard" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <section class="page-title">
+        <h1><span class="fa fa-th"></span>&nbsp;     Dashboard</h1>
+    </section>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMenu" runat="server">
+    <input type="hidden" id="menutabid" value="tsmTranFI" runat="server" />
+    <input type="hidden" id="mainmenuid" value="tsmTranFI" runat="server" />
+</asp:Content>

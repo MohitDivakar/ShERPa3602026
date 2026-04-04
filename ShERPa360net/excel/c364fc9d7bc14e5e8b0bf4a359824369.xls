@@ -1,0 +1,15 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">IMEINO</th><th scope="col">JOBID</th><th scope="col">ERROR</th><th scope="col">OLDJOBID</th>
+		</tr><tr>
+			<td>&#39;52102365210125478956230247</td><td>&nbsp;</td><td>Model not added.!</td><td>XYZ</td>
+		</tr><tr>
+			<td>&#39;52102365210125478956230215</td><td>&nbsp;</td><td>Model not added.!</td><td>ABC</td>
+		</tr><tr>
+			<td>&#39;000000SDFC125DF</td><td>&nbsp;</td><td>Model not added.!</td><td>DEF</td>
+		</tr><tr>
+			<td>&#39;854120123658454</td><td>&nbsp;</td><td>Model not added.!</td><td>GHI</td>
+		</tr>
+	</table>
+</div>

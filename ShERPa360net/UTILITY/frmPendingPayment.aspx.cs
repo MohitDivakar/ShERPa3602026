@@ -1,0 +1,154 @@
+﻿using ShERPa360net.Class;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace ShERPa360net.UTILITY
+{
+    public partial class frmPendingPayment : System.Web.UI.Page
+    {
+
+        MainClass objMainClass = new MainClass();
+        DALUserRights objDALUserRights = new DALUserRights();
+        BindDDL objBindDDL = new BindDDL();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+
+                try
+                {
+                    if (Session["USERID"] != null)
+                    {
+                        objDALUserRights.CHECK_FORMRIGHTS(Session["USERID"].ToString(), menutabid.Value, "");
+                        if (FormRights.bView == false) //if (objDALUserRights.bView == false)
+                        {
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-warning').modal();$('#lblAlertMsg').text('You are not authorised to access this page.');$('.close').click(function(){window.location.href ='../HomePage.aspx' });", true);
+                            return;
+                        }
+
+                        int month = DateTime.Now.Month;
+                        int year = DateTime.Now.Year;
+                        if (month < 4)
+                        {
+                            year = year - 1;
+                        }
+                        string startdt = "01-04-" + year;
+                        txtFromDate.Text = startdt;//objMainClass.indianTime.Date.ToString("dd-MM-yyyy"); //Convert.ToDateTime(DateTime.Now).ToShortDateString();
+                        txtToDate.Text = (Convert.ToDateTime(startdt).AddYears(1).AddSeconds(-1)).ToString("dd-MM-yyyy");//objMainClass.indianTime.Date.ToString("dd-MM-yyyy"); //Convert.ToDateTime(DateTime.Now).ToShortDateString();
+                        objBindDDL.FillVendor(ddlVendor);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-warning').modal();$('#lblAlertMsg').text('Session Expired. Please Log In again.');$('.close').click(function(){window.location.href ='../Login.aspx' });", true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-danger').modal();$('#lblErrMsg').text(\"" + ex.Message + "\");", true);
+                }
+            }
+        }
+
+        protected void lnkSerch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["USERID"] != null)
+                {
+                    DataTable dt = new DataTable();
+                    dt = objMainClass.GetAdvPendingPaymentData(objMainClass.intCmpId, ddlVendor.SelectedValue,1,1, txtFromDate.Text, txtToDate.Text, "LISTPENDINGDATA");
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        string repeat = "";
+                        decimal lastpoamt = 0;
+                        decimal LASTPOPENDING = 0;
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            string PBNO = Convert.ToString(dt.Rows[i]["PBNO"]);
+
+                            if (Convert.ToDecimal(dt.Rows[i]["PBPENDINGAMT"]) > Convert.ToDecimal(dt.Rows[i]["POAMT"]))
+                            {
+                                dt.Rows[i]["PBPENDINGAMT"] = Convert.ToDecimal(dt.Rows[i]["POAMT"]);
+                            }
+                            if (repeat == PBNO && Convert.ToString(dt.Rows[i]["PBTYPE"]) != "DN")
+                            { 
+                                dt.Rows[i]["PBPENDINGAMT"] = Convert.ToDecimal(Convert.ToDecimal(dt.Rows[i]["NETPBAMT"]) - Convert.ToDecimal(LASTPOPENDING));
+                                if (Convert.ToDecimal(dt.Rows[i]["PBPENDINGAMT"]) > Convert.ToDecimal(dt.Rows[i]["POAMT"]))
+                                {
+                                    dt.Rows[i]["PBPENDINGAMT"] = Convert.ToDecimal(dt.Rows[i]["POAMT"]);
+                                }
+                            }
+                            repeat = PBNO;
+                            LASTPOPENDING = Convert.ToDecimal(dt.Rows[i]["PBPENDINGAMT"]);
+                            lastpoamt = LASTPOPENDING;
+                        }
+
+                        decimal PENDINGAMT = 0;
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            PENDINGAMT = PENDINGAMT + Convert.ToDecimal(dt.Rows[i]["PBPENDINGAMT"]);
+                        }
+                        dt.Rows.Add("", "", "", DateTime.Now, "", "", 0, 0, 0, 0, 0, PENDINGAMT, "Balance Amount", "", "");
+
+                        gvList.DataSource = dt;
+                        gvList.DataBind();
+                        gvList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    }
+                    else
+                    {
+                        gvList.DataSource = string.Empty;
+                        gvList.DataBind();
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-warning').modal();$('#lblAlertMsg').text('Session Expired. Please Log In again.');$('.close').click(function(){window.location.href ='../Login.aspx' });", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-danger').modal();$('#lblErrMsg').text(\"" + ex.Message + "\");", true);
+            }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
+        }
+
+        protected void lnkExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["USERID"] != null)
+                {
+                    string attachment = "attachment; filename=Pending Payment -" + ddlVendor.SelectedItem.Text + " " + DateTime.Now + ".xls";
+                    Response.ClearContent();
+                    Response.AddHeader("content-disposition", attachment);
+                    Response.ContentType = "application/vdn.ms-excel";
+                    StringWriter sw = new StringWriter();
+                    HtmlTextWriter htw = new HtmlTextWriter(sw);
+                    gvList.RenderControl(htw);
+                    Response.Write(sw.ToString());
+                    Response.End();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-warning').modal();$('#lblAlertMsg').text('Session Expired. Please Log In again.');$('.close').click(function(){window.location.href ='../Login.aspx' });", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-danger').modal();$('#lblErrMsg').text(\"" + ex.Message + "\");", true);
+            }
+        }
+    }
+}
