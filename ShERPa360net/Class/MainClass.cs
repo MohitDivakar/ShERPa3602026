@@ -19014,6 +19014,35 @@ namespace ShERPa360net
         }
 
 
+        public DataTable GETALLSTAGEDATA(int CMPID, int STAGEID, string SEGMENT, string FROMDATE, string TODATE, string JOBID, string ACTION)
+        {
+            DataTable dt = new DataTable();
+            SqlCommand cmd = new SqlCommand("SP_NEW_QCREPORT", ConnQuike);
+            try
+            {
+                cmd.Parameters.AddWithValue("@CMPID", CMPID);
+                cmd.Parameters.AddWithValue("@STAGEID", STAGEID);
+                cmd.Parameters.AddWithValue("@SEGMENT", SEGMENT);
+                cmd.Parameters.AddWithValue("@FROMDATE", FROMDATE == "" ? "" : setDateFormat(FROMDATE, true) + " 00:00:00.000");
+                cmd.Parameters.AddWithValue("@TODATE", TODATE == "" ? "" : setDateFormat(TODATE, true) + " 23:59:59.000");
+                cmd.Parameters.AddWithValue("@JOBID", JOBID == "" ? "" : strConvertZeroPadding(JOBID));
+                cmd.Parameters.AddWithValue("@ACTION", ACTION);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                cmd.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                cmd.Connection.Close();
+                throw ex;
+            }
+
+            return dt;
+        }
+
+
 
         public string MaxQuotNo()
         {
