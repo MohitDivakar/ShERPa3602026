@@ -1082,6 +1082,7 @@
     <Content Include="REPORTS\rptOpenGRNReport.aspx" />
     <Content Include="REPORTS\rptPendingSCM.aspx" />
     <Content Include="REPORTS\rptPOApprovalReport.aspx" />
+    <Content Include="REPORTS\rptProductionReport.aspx" />
     <Content Include="REPORTS\rptRTVData.aspx" />
     <Content Include="REPORTS\rptSalesDeviation.aspx" />
     <Content Include="REPORTS\rptSORegister.aspx" />
@@ -5972,6 +5973,13 @@
     </Compile>
     <Compile Include="REPORTS\rptPOApprovalReport.aspx.designer.cs">
       <DependentUpon>rptPOApprovalReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="REPORTS\rptProductionReport.aspx.cs">
+      <DependentUpon>rptProductionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="REPORTS\rptProductionReport.aspx.designer.cs">
+      <DependentUpon>rptProductionReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="REPORTS\rptRTVData.aspx.cs">
       <DependentUpon>rptRTVData.aspx</DependentUpon>
