@@ -19017,7 +19017,7 @@ namespace ShERPa360net
         public DataTable GETALLSTAGEDATA(int CMPID, int STAGEID, string SEGMENT, string FROMDATE, string TODATE, string JOBID, string ACTION)
         {
             DataTable dt = new DataTable();
-            SqlCommand cmd = new SqlCommand("SP_NEW_QCREPORT", ConnQuike);
+            SqlCommand cmd = new SqlCommand("SP_NEW_QCREPORT", ConnSherpa);
             try
             {
                 cmd.Parameters.AddWithValue("@CMPID", CMPID);

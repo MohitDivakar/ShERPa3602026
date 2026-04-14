@@ -561,6 +561,7 @@ J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net
 J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\bin\zxing.xml
 J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\bin\zxing.presentation.xml
 J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\obj\Debug\ShERPa360net.csproj.AssemblyReference.cache
 J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\obj\Debug\RdlCompile.cache
 J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\obj\Debug\RdlCompile.compiled
 J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\obj\Debug\ShERPa360net.csproj.CoreCompileInputs.cache
@@ -608,4 +609,3 @@ J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net
 J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
 J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-J:\Mohit E Drive Data\All New Project\Sufiyan Projects\ShERPa360net\ShERPa360net\obj\Debug\ShERPa360net.csproj.AssemblyReference.cache

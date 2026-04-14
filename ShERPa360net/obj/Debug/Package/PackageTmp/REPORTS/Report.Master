@@ -251,6 +251,7 @@
                                     <a href="#"><i class='bx bxs-report'></i>Cavitak</a>
                                     <ul class="nav-dropdown">
                                         <li id="tsmQtekCavitakReport" class=""><a href="rptCavitakReport.aspx"><i class='bx bx-list-check inner-icn'></i>Cavitak Report</a></li>
+                                        <li id="rptProductionReport" class=""><a href="rptProductionReport.aspx"><i class='bx bx-list-check inner-icn'></i>Production Report</a></li>
                                     </ul>
                                 </li>
 
@@ -495,6 +496,7 @@
                         </div>
                         <ul class="sub-menu pre-scrollable " id="style-1">
                             <li id="tsmQtekCavitakReport1" class=""><a href="rptCavitakReport.aspx"><i class='bx bx-list-check inner-icn'></i>Cavitak Report</a></li>
+                            <li id="rptProductionReport1" class=""><a href="rptProductionReport.aspx"><i class='bx bx-list-check inner-icn'></i>Production Report</a></li>
                         </ul>
                     </li>
 

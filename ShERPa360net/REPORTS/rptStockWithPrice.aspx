@@ -111,6 +111,12 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="Inward By">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblInwardBy" runat="server" Text='<%# Eval("USERNAME") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="Lot No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblREMARK" runat="server" Text='<%# Eval("REMARK") %>'></asp:Label>
@@ -168,6 +174,12 @@
                                             <asp:TemplateField HeaderText="Plant">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPLANTCD" runat="server" Text='<%# Eval("PLANTCD") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Location">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblLOCCDLOCCD" runat="server" Text='<%# Eval("LOCCD") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
