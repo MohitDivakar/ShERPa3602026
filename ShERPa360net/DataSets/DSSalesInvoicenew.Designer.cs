@@ -464,6 +464,22 @@ namespace ShERPa360net.DataSets {
             
             private global::System.Data.DataColumn columnEWPRICE;
             
+            private global::System.Data.DataColumn columnBILLTOCUSTNAME;
+            
+            private global::System.Data.DataColumn columnBILLTOCUSTADD1;
+            
+            private global::System.Data.DataColumn columnBILLTOCUSTADD2;
+            
+            private global::System.Data.DataColumn columnBILLTOCUSTADD3;
+            
+            private global::System.Data.DataColumn columnBILLTOCITYE;
+            
+            private global::System.Data.DataColumn columnBILLTOSTATEID;
+            
+            private global::System.Data.DataColumn columnBILLTOPINCODE;
+            
+            private global::System.Data.DataColumn columnBILLTOCUSTMOBILENO;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public DSSIDataTable() {
@@ -1099,6 +1115,70 @@ namespace ShERPa360net.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn BILLTOCUSTNAMEColumn {
+                get {
+                    return this.columnBILLTOCUSTNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn BILLTOCUSTADD1Column {
+                get {
+                    return this.columnBILLTOCUSTADD1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn BILLTOCUSTADD2Column {
+                get {
+                    return this.columnBILLTOCUSTADD2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn BILLTOCUSTADD3Column {
+                get {
+                    return this.columnBILLTOCUSTADD3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn BILLTOCITYEColumn {
+                get {
+                    return this.columnBILLTOCITYE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn BILLTOSTATEIDColumn {
+                get {
+                    return this.columnBILLTOSTATEID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn BILLTOPINCODEColumn {
+                get {
+                    return this.columnBILLTOPINCODE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn BILLTOCUSTMOBILENOColumn {
+                get {
+                    return this.columnBILLTOCUSTMOBILENO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1209,7 +1289,15 @@ namespace ShERPa360net.DataSets {
                         string PLANTCD, 
                         decimal EWID, 
                         string EWDESC, 
-                        decimal EWPRICE) {
+                        decimal EWPRICE, 
+                        string BILLTOCUSTNAME, 
+                        string BILLTOCUSTADD1, 
+                        string BILLTOCUSTADD2, 
+                        string BILLTOCUSTADD3, 
+                        string BILLTOCITYE, 
+                        string BILLTOSTATEID, 
+                        decimal BILLTOPINCODE, 
+                        decimal BILLTOCUSTMOBILENO) {
                 DSSIRow rowDSSIRow = ((DSSIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ITEMSPEC,
@@ -1286,7 +1374,15 @@ namespace ShERPa360net.DataSets {
                         PLANTCD,
                         EWID,
                         EWDESC,
-                        EWPRICE};
+                        EWPRICE,
+                        BILLTOCUSTNAME,
+                        BILLTOCUSTADD1,
+                        BILLTOCUSTADD2,
+                        BILLTOCUSTADD3,
+                        BILLTOCITYE,
+                        BILLTOSTATEID,
+                        BILLTOPINCODE,
+                        BILLTOCUSTMOBILENO};
                 rowDSSIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDSSIRow);
                 return rowDSSIRow;
@@ -1384,6 +1480,14 @@ namespace ShERPa360net.DataSets {
                 this.columnEWID = base.Columns["EWID"];
                 this.columnEWDESC = base.Columns["EWDESC"];
                 this.columnEWPRICE = base.Columns["EWPRICE"];
+                this.columnBILLTOCUSTNAME = base.Columns["BILLTOCUSTNAME"];
+                this.columnBILLTOCUSTADD1 = base.Columns["BILLTOCUSTADD1"];
+                this.columnBILLTOCUSTADD2 = base.Columns["BILLTOCUSTADD2"];
+                this.columnBILLTOCUSTADD3 = base.Columns["BILLTOCUSTADD3"];
+                this.columnBILLTOCITYE = base.Columns["BILLTOCITYE"];
+                this.columnBILLTOSTATEID = base.Columns["BILLTOSTATEID"];
+                this.columnBILLTOPINCODE = base.Columns["BILLTOPINCODE"];
+                this.columnBILLTOCUSTMOBILENO = base.Columns["BILLTOCUSTMOBILENO"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1539,6 +1643,22 @@ namespace ShERPa360net.DataSets {
                 base.Columns.Add(this.columnEWDESC);
                 this.columnEWPRICE = new global::System.Data.DataColumn("EWPRICE", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEWPRICE);
+                this.columnBILLTOCUSTNAME = new global::System.Data.DataColumn("BILLTOCUSTNAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBILLTOCUSTNAME);
+                this.columnBILLTOCUSTADD1 = new global::System.Data.DataColumn("BILLTOCUSTADD1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBILLTOCUSTADD1);
+                this.columnBILLTOCUSTADD2 = new global::System.Data.DataColumn("BILLTOCUSTADD2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBILLTOCUSTADD2);
+                this.columnBILLTOCUSTADD3 = new global::System.Data.DataColumn("BILLTOCUSTADD3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBILLTOCUSTADD3);
+                this.columnBILLTOCITYE = new global::System.Data.DataColumn("BILLTOCITYE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBILLTOCITYE);
+                this.columnBILLTOSTATEID = new global::System.Data.DataColumn("BILLTOSTATEID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBILLTOSTATEID);
+                this.columnBILLTOPINCODE = new global::System.Data.DataColumn("BILLTOPINCODE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBILLTOPINCODE);
+                this.columnBILLTOCUSTMOBILENO = new global::System.Data.DataColumn("BILLTOCUSTMOBILENO", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBILLTOCUSTMOBILENO);
                 this.columnITEMSPEC.ReadOnly = true;
                 this.columnITEMSPEC.MaxLength = 150;
                 this.columnENDCUST.MaxLength = 50;
@@ -1593,6 +1713,20 @@ namespace ShERPa360net.DataSets {
                 this.columnDISPATCHGST.MaxLength = 50;
                 this.columnPLANTCD.MaxLength = 4;
                 this.columnEWDESC.MaxLength = 200;
+                this.columnBILLTOCUSTNAME.ReadOnly = true;
+                this.columnBILLTOCUSTNAME.MaxLength = 100;
+                this.columnBILLTOCUSTADD1.ReadOnly = true;
+                this.columnBILLTOCUSTADD1.MaxLength = 50;
+                this.columnBILLTOCUSTADD2.ReadOnly = true;
+                this.columnBILLTOCUSTADD2.MaxLength = 50;
+                this.columnBILLTOCUSTADD3.ReadOnly = true;
+                this.columnBILLTOCUSTADD3.MaxLength = 50;
+                this.columnBILLTOCITYE.ReadOnly = true;
+                this.columnBILLTOCITYE.MaxLength = 50;
+                this.columnBILLTOSTATEID.ReadOnly = true;
+                this.columnBILLTOSTATEID.MaxLength = 50;
+                this.columnBILLTOPINCODE.ReadOnly = true;
+                this.columnBILLTOCUSTMOBILENO.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3218,6 +3352,134 @@ namespace ShERPa360net.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string BILLTOCUSTNAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableDSSI.BILLTOCUSTNAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BILLTOCUSTNAME\' in table \'DSSI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSI.BILLTOCUSTNAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string BILLTOCUSTADD1 {
+                get {
+                    try {
+                        return ((string)(this[this.tableDSSI.BILLTOCUSTADD1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BILLTOCUSTADD1\' in table \'DSSI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSI.BILLTOCUSTADD1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string BILLTOCUSTADD2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableDSSI.BILLTOCUSTADD2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BILLTOCUSTADD2\' in table \'DSSI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSI.BILLTOCUSTADD2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string BILLTOCUSTADD3 {
+                get {
+                    try {
+                        return ((string)(this[this.tableDSSI.BILLTOCUSTADD3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BILLTOCUSTADD3\' in table \'DSSI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSI.BILLTOCUSTADD3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string BILLTOCITYE {
+                get {
+                    try {
+                        return ((string)(this[this.tableDSSI.BILLTOCITYEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BILLTOCITYE\' in table \'DSSI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSI.BILLTOCITYEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string BILLTOSTATEID {
+                get {
+                    try {
+                        return ((string)(this[this.tableDSSI.BILLTOSTATEIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BILLTOSTATEID\' in table \'DSSI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSI.BILLTOSTATEIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal BILLTOPINCODE {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDSSI.BILLTOPINCODEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BILLTOPINCODE\' in table \'DSSI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSI.BILLTOPINCODEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal BILLTOCUSTMOBILENO {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDSSI.BILLTOCUSTMOBILENOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BILLTOCUSTMOBILENO\' in table \'DSSI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSI.BILLTOCUSTMOBILENOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsITEMSPECNull() {
                 return this.IsNull(this.tableDSSI.ITEMSPECColumn);
             }
@@ -4091,6 +4353,102 @@ namespace ShERPa360net.DataSets {
             public void SetEWPRICENull() {
                 this[this.tableDSSI.EWPRICEColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBILLTOCUSTNAMENull() {
+                return this.IsNull(this.tableDSSI.BILLTOCUSTNAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBILLTOCUSTNAMENull() {
+                this[this.tableDSSI.BILLTOCUSTNAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBILLTOCUSTADD1Null() {
+                return this.IsNull(this.tableDSSI.BILLTOCUSTADD1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBILLTOCUSTADD1Null() {
+                this[this.tableDSSI.BILLTOCUSTADD1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBILLTOCUSTADD2Null() {
+                return this.IsNull(this.tableDSSI.BILLTOCUSTADD2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBILLTOCUSTADD2Null() {
+                this[this.tableDSSI.BILLTOCUSTADD2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBILLTOCUSTADD3Null() {
+                return this.IsNull(this.tableDSSI.BILLTOCUSTADD3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBILLTOCUSTADD3Null() {
+                this[this.tableDSSI.BILLTOCUSTADD3Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBILLTOCITYENull() {
+                return this.IsNull(this.tableDSSI.BILLTOCITYEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBILLTOCITYENull() {
+                this[this.tableDSSI.BILLTOCITYEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBILLTOSTATEIDNull() {
+                return this.IsNull(this.tableDSSI.BILLTOSTATEIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBILLTOSTATEIDNull() {
+                this[this.tableDSSI.BILLTOSTATEIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBILLTOPINCODENull() {
+                return this.IsNull(this.tableDSSI.BILLTOPINCODEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBILLTOPINCODENull() {
+                this[this.tableDSSI.BILLTOPINCODEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsBILLTOCUSTMOBILENONull() {
+                return this.IsNull(this.tableDSSI.BILLTOCUSTMOBILENOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetBILLTOCUSTMOBILENONull() {
+                this[this.tableDSSI.BILLTOCUSTMOBILENOColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -4488,6 +4846,14 @@ namespace ShERPa360net.DataSets.DSSalesInvoicenewTableAdapters {
             tableMapping.ColumnMappings.Add("EWID", "EWID");
             tableMapping.ColumnMappings.Add("EWDESC", "EWDESC");
             tableMapping.ColumnMappings.Add("EWPRICE", "EWPRICE");
+            tableMapping.ColumnMappings.Add("BILLTOCUSTNAME", "BILLTOCUSTNAME");
+            tableMapping.ColumnMappings.Add("BILLTOCUSTADD1", "BILLTOCUSTADD1");
+            tableMapping.ColumnMappings.Add("BILLTOCUSTADD2", "BILLTOCUSTADD2");
+            tableMapping.ColumnMappings.Add("BILLTOCUSTADD3", "BILLTOCUSTADD3");
+            tableMapping.ColumnMappings.Add("BILLTOCITYE", "BILLTOCITYE");
+            tableMapping.ColumnMappings.Add("BILLTOSTATEID", "BILLTOSTATEID");
+            tableMapping.ColumnMappings.Add("BILLTOPINCODE", "BILLTOPINCODE");
+            tableMapping.ColumnMappings.Add("BILLTOCUSTMOBILENO", "BILLTOCUSTMOBILENO");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -4506,41 +4872,50 @@ namespace ShERPa360net.DataSets.DSSalesInvoicenewTableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT  ISNULL(CASE WHEN H.ITEMGRPID = 9 THEN (C.PRODMAKE + \' \' + B.MODELDESC + \'" +
                 " \' + B.RAMSIZE +\' GB \' + B.ROMSIZE +\' GB \' + B.COLOR) ELSE H.ITEMDESC END,H.ITEM" +
-                "DESC) AS ITEMSPEC , E.HSNCODE,\r\n\t\t\t\t\tF.RETAILCUSTNAME AS ENDCUST,F.CUSTADD1 AS E" +
-                "NDADDR1,F.CUSTADD2 AS ENDADDR2,F.CUSTADD3 AS ENDADDR3,F.CITY AS ENDCITY,F.STATE " +
-                "AS ENDSTATE,F.CUSTMOBILENO AS ENDMOBILENO,\r\n\t\t\t\t\tF.PINCODE AS ENDPOSTALCODE,C.PR" +
-                "ODMAKE,C.PRODMODEL,F.CUSTPARTDESC2 AS IMEINO, H.JOBID,C.JOBDT,H.ITEMDESC,G.TAXAM" +
-                "T,H.SINO,F.CMPID,H.QTY,\r\n\t\t\t\t\tCASE WHEN A.SITYPE = \'SLR\' THEN (H.RATE - H.DISCAM" +
-                "T) ELSE H.RATE END AS RATE,\r\n\t\t\t\t\tCAST(((CASE WHEN A.SITYPE = \'SLR\' THEN (H.RATE" +
-                " - H.DISCAMT) ELSE H.RATE END) * H.QTY) AS DECIMAL(10,2)) AS CAMOUNT,\r\n\t\t\t\t\tA.SI" +
-                "DT,H.DISCAMT,A.OTHERS,A.NETAMT,A.TOTAMT,A.ROUNDOFF,ISNULL(G.RATE, 0) AS TAXRATE," +
-                "A.REMARK,H.SITYPE AS SITYPE,A.COUPONNO, H.COUPONVALUE,G.CONDTYPE,A.TAXOTH,A.TAXD" +
-                "ISC,B.SERIALNO,\r\n\t\t\t\t\tI.PAYMODE,J.DESCR,A.PREPAIDAMT,A.REMAINAMT,UPPER(K.ADDOF) " +
-                "AS ADDOF,L.ADDR1,L.ADDR2,L.ADDR3,L.CITY,L.POSTALCODE,K.GSTNO,M.STATE,M.STATECODE" +
-                ",O.ADDR1 AS DISPADDR1,O.ADDR2 AS DISPADDR2,\r\n\t\t\t\t\tO.ADDR3 AS DISPADDR3,O.CITY AS" +
-                " DISPCITY,O.POSTALCODE AS DISPPOSTALCODE,P.STATE AS DISPSTATE,P.STATECODE AS DIS" +
-                "PSTATECODE,F.REFNO,F.GSTNO AS CUSTGSTNO,F.RETAILCUSTNAME AS CUSTNAME,\r\n\t\t\t\t\tF.CU" +
-                "STADD1,F.CUSTADD2,F.CUSTADD3,F.CITY AS SOCITY,F.PINCODE,F.STATE  AS SOSTATE,H.IT" +
-                "EMGRPID,A.NETTAXAMT,A.SITYPE,F.SEGMENT,N.GSTNO AS DISPATCHGST,F.PLANTCD,F.EWID,F" +
-                ".EWDESC,F.EWPRICE\r\n\t\t\t\t\tFROM VIE_SODTL AS F WITH(NOLOCK) \r\n\t\t\t\t\tLEFT OUTER JOIN " +
-                "VIE_JOBSHEET AS C WITH(NOLOCK) ON F.JOBID = C.JOBID\r\n\t\t\t\t\tLEFT OUTER JOIN VIE_DC" +
-                "SODTL AS Q WITH(NOLOCK) ON F.SONO = Q.SONO AND F.SRNO = Q.SOSRNO\r\n\t\t\t\t\tLEFT OUTE" +
-                "R JOIN VIE_SIDTL AS H WITH(NOLOCK) ON H.SONO = F.SONO  AND Q.DOCNO = H.DCNO AND " +
-                "Q.SRNO = H.DCSRNO\r\n\t\t\t\t\tLEFT OUTER JOIN TRAN_SIMST AS A WITH(NOLOCK) ON A.SINO =" +
-                " H.SINO\r\n\t\t\t\t\tLEFT OUTER JOIN TRAN_JSPROD_SPEC AS B WITH(NOLOCK) ON H.JOBID = B." +
-                "JOBID\r\n\t\t\t\t\tLEFT OUTER JOIN MST_ITEM AS D WITH(NOLOCK) ON H.ITEMID = D.ITEMID\r\n\t" +
-                "\t\t\t\tLEFT OUTER JOIN MST_ITEMSUBGRP AS E WITH(NOLOCK) ON E.ID = D.ITEMSUBGRP\r\n\t\t\t" +
-                "\t\tLEFT OUTER JOIN TRAN_SICOND AS G WITH(NOLOCK) ON H.CMPID = G.CMPID AND H.SINO " +
-                "= G.SINO AND H.SRNO = G.SISRNO \r\n\t\t\t\t\tLEFT OUTER JOIN MST_PAYMENTMODE AS I WITH(" +
-                "NOLOCK) ON F.PAYMODE = I.ID\r\n\t\t\t\t\tLEFT OUTER JOIN MST_PAYTERMS AS J WITH(NOLOCK)" +
-                " ON F.PMTTERMS = J.PMTTERMS\r\n\t\t\t\t\tLEFT OUTER JOIN MST_PLANT AS K WITH(NOLOCK) ON" +
-                " K.CMPID = F.CMPID AND K.PLANTCD = H.PLANTCD\r\n\t\t\t\t\tLEFT OUTER JOIN MST_ADDRESS A" +
-                "S L WITH(NOLOCK) ON L.CMPID = K.CMPID AND L.ID = K.GSTADDID\r\n\t\t\t\t\tLEFT OUTER JOI" +
-                "N MST_STATE AS M WITH(NOLOCK) ON M.ID = L.STCD\r\n\t\t\t\t\tLEFT OUTER JOIN MST_PLANT A" +
-                "S N WITH(NOLOCK) ON N.CMPID = F.CMPID AND N.PLANTCD = H.PLANTCD\r\n\t\t\t\t\tLEFT OUTER" +
-                " JOIN MST_ADDRESS AS O WITH(NOLOCK) ON O.CMPID = N.CMPID AND O.ID = N.ADDID\r\n\t\t\t" +
-                "\t\tLEFT OUTER JOIN MST_STATE AS P WITH(NOLOCK) ON P.ID = O.STCD\r\n\t\t\t\t\tWHERE H.CMP" +
-                "ID = @CMPID AND H.SINO = @SINO  ORDER BY TAXRATE DESC";
+                "DESC) AS ITEMSPEC , E.HSNCODE,\r\nF.RETAILCUSTNAME AS ENDCUST,F.CUSTADD1 AS ENDADD" +
+                "R1,F.CUSTADD2 AS ENDADDR2,F.CUSTADD3 AS ENDADDR3,F.CITY AS ENDCITY,F.STATE AS EN" +
+                "DSTATE,F.CUSTMOBILENO AS ENDMOBILENO,\r\nF.PINCODE AS ENDPOSTALCODE,C.PRODMAKE,C.P" +
+                "RODMODEL,F.CUSTPARTDESC2 AS IMEINO, H.JOBID,C.JOBDT,H.ITEMDESC,G.TAXAMT,H.SINO,F" +
+                ".CMPID,H.QTY,\r\nCASE WHEN A.SITYPE = \'SLR\' THEN (H.RATE - H.DISCAMT) ELSE H.RATE " +
+                "END AS RATE,\r\nCAST(((CASE WHEN A.SITYPE = \'SLR\' THEN (H.RATE - H.DISCAMT) ELSE H" +
+                ".RATE END) * H.QTY) AS DECIMAL(10,2)) AS CAMOUNT,\r\nA.SIDT,H.DISCAMT,A.OTHERS,A.N" +
+                "ETAMT,A.TOTAMT,A.ROUNDOFF,ISNULL(G.RATE, 0) AS TAXRATE,A.REMARK,H.SITYPE AS SITY" +
+                "PE,A.COUPONNO, H.COUPONVALUE,G.CONDTYPE,A.TAXOTH,A.TAXDISC,B.SERIALNO,\r\nI.PAYMOD" +
+                "E,J.DESCR,A.PREPAIDAMT,A.REMAINAMT,UPPER(K.ADDOF) AS ADDOF,L.ADDR1,L.ADDR2,L.ADD" +
+                "R3,L.CITY,L.POSTALCODE,K.GSTNO,M.STATE,M.STATECODE,O.ADDR1 AS DISPADDR1,O.ADDR2 " +
+                "AS DISPADDR2,\r\nO.ADDR3 AS DISPADDR3,O.CITY AS DISPCITY,O.POSTALCODE AS DISPPOSTA" +
+                "LCODE,P.STATE AS DISPSTATE,P.STATECODE AS DISPSTATECODE,F.REFNO,F.GSTNO AS CUSTG" +
+                "STNO,F.RETAILCUSTNAME AS CUSTNAME,\r\nF.CUSTADD1,F.CUSTADD2,F.CUSTADD3,F.CITY AS S" +
+                "OCITY,F.PINCODE,F.STATE  AS SOSTATE,H.ITEMGRPID,A.NETTAXAMT,A.SITYPE,F.SEGMENT,N" +
+                ".GSTNO AS DISPATCHGST,F.PLANTCD,F.EWID,F.EWDESC,F.EWPRICE,\r\nCASE WHEN F.BILLTOCU" +
+                "STNAME IS NULL THEN F.RETAILCUSTNAME ELSE F.BILLTOCUSTNAME END AS BILLTOCUSTNAME" +
+                ",\r\nCASE WHEN F.BILLTOCUSTADD1 IS NULL THEN F.CUSTADD1 ELSE F.BILLTOCUSTADD1 END " +
+                "AS BILLTOCUSTADD1,\r\nCASE WHEN F.BILLTOCUSTADD2 IS NULL THEN F.CUSTADD2 ELSE F.BI" +
+                "LLTOCUSTADD2 END AS BILLTOCUSTADD2,\r\nCASE WHEN F.BILLTOCUSTADD3 IS NULL THEN F.C" +
+                "USTADD3 ELSE F.BILLTOCUSTADD3 END AS BILLTOCUSTADD3,\r\nCASE WHEN F.BILLTOCITY IS " +
+                "NULL THEN F.CITY ELSE F.BILLTOCITY END AS BILLTOCITYE,\r\nCASE WHEN R.STATE IS NUL" +
+                "L THEN F.STATE ELSE R.STATE END AS BILLTOSTATEID,\r\nCASE WHEN F.BILLTOPINCODE IS " +
+                "NULL THEN F.PINCODE ELSE F.BILLTOPINCODE END AS BILLTOPINCODE,\r\nCASE WHEN F.BILL" +
+                "TOCUSTMOBILENO IS NULL THEN F.CUSTMOBILENO ELSE F.BILLTOCUSTMOBILENO END AS BILL" +
+                "TOCUSTMOBILENO\r\nFROM VIE_SODTL AS F WITH(NOLOCK) \r\nLEFT OUTER JOIN VIE_JOBSHEET " +
+                "AS C WITH(NOLOCK) ON F.JOBID = C.JOBID\r\nLEFT OUTER JOIN VIE_DCSODTL AS Q WITH(NO" +
+                "LOCK) ON F.SONO = Q.SONO AND F.SRNO = Q.SOSRNO\r\nLEFT OUTER JOIN VIE_SIDTL AS H W" +
+                "ITH(NOLOCK) ON H.SONO = F.SONO  AND Q.DOCNO = H.DCNO AND Q.SRNO = H.DCSRNO --AND" +
+                " H.JOBID = F.JOBID \r\nLEFT OUTER JOIN TRAN_SIMST AS A WITH(NOLOCK) ON A.SINO = H." +
+                "SINO\r\nLEFT OUTER JOIN TRAN_JSPROD_SPEC AS B WITH(NOLOCK) ON H.JOBID = B.JOBID\r\nL" +
+                "EFT OUTER JOIN MST_ITEM AS D WITH(NOLOCK) ON H.ITEMID = D.ITEMID\r\nLEFT OUTER JOI" +
+                "N MST_ITEMSUBGRP AS E WITH(NOLOCK) ON E.ID = D.ITEMSUBGRP\r\nLEFT OUTER JOIN TRAN_" +
+                "SICOND AS G WITH(NOLOCK) ON H.CMPID = G.CMPID AND H.SINO = G.SINO AND H.SRNO = G" +
+                ".SISRNO \r\nLEFT OUTER JOIN MST_PAYMENTMODE AS I WITH(NOLOCK) ON F.PAYMODE = I.ID\r" +
+                "\nLEFT OUTER JOIN MST_PAYTERMS AS J WITH(NOLOCK) ON F.PMTTERMS = J.PMTTERMS\r\nLEFT" +
+                " OUTER JOIN MST_PLANT AS K WITH(NOLOCK) ON K.CMPID = F.CMPID AND K.PLANTCD = H.P" +
+                "LANTCD\r\nLEFT OUTER JOIN MST_ADDRESS AS L WITH(NOLOCK) ON L.CMPID = K.CMPID AND L" +
+                ".ID = K.GSTADDID\r\nLEFT OUTER JOIN MST_STATE AS M WITH(NOLOCK) ON M.ID = L.STCD\r\n" +
+                "LEFT OUTER JOIN MST_PLANT AS N WITH(NOLOCK) ON N.CMPID = F.CMPID AND N.PLANTCD =" +
+                " H.PLANTCD\r\nLEFT OUTER JOIN MST_ADDRESS AS O WITH(NOLOCK) ON O.CMPID = N.CMPID A" +
+                "ND O.ID = N.ADDID\r\nLEFT OUTER JOIN MST_STATE AS P WITH(NOLOCK) ON P.ID = O.STCD\r" +
+                "\nLEFT OUTER JOIN MST_STATE AS R WITH(NOLOCK) ON F.BILLTOSTATEID = R.ID\r\nWHERE H." +
+                "CMPID = @CMPID AND H.SINO = @SINO  ORDER BY TAXRATE DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CMPID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "CMPID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SINO", global::System.Data.SqlDbType.NVarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "SINO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

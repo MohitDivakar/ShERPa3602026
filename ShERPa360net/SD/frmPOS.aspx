@@ -241,6 +241,7 @@
                     <div class="col-md-12">
                         <fieldset class="scheduler-border shadow" runat="server" id="dvPersonalDetail" visible="true">
                             <legend class="scheduler-border">Customer Details</legend>
+
                             <div class="col-md-12">
 
                                 <div class="col-md-3">
@@ -295,6 +296,7 @@
                                 </div>
 
                             </div>
+
                             <div class="col-md-12">
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -343,6 +345,7 @@
                                 </div>
 
                             </div>
+
                             <div class="col-md-12">
 
                                 <div class="col-md-3">
@@ -459,6 +462,132 @@
                                 </div>
 
                             </div>
+
+                            <%--Bill TO Code--%>
+
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblBillToHeading" runat="server" Text="Bill To Address" ForeColor="Red" Font-Bold="true" Font-Size="Larger"></asp:Label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Same as Ship To Address : </label>
+                                        <div class="col-md-7 col-xs-12">
+                                            <asp:CheckBox ID="chkSameAsShipto" runat="server" CssClass="chclass" OnCheckedChanged="chkSameAsShipto_CheckedChanged" AutoPostBack="true" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Name : </label>
+                                        <div class="col-md-7 col-xs-12">
+                                            <asp:TextBox ID="txtBillToName" runat="server" CssClass="form-control" placeholder="Customer Name"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvtxtBillToName" Style="color: red;" ControlToValidate="txtBillToName" runat="server" ValidationGroup="Save"
+                                                ErrorMessage="Enter Bill To Customer Name" Display="Dynamic">
+                                                Enter Bill To Customer Name</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Mobile No. : </label>
+                                        <div class="col-md-7 col-xs-12">
+                                            <asp:TextBox ID="txtBillToMobileNo" runat="server" CssClass="form-control" placeholder="Mobile Number"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvtxtBillToMobileNo" Style="color: red;" ControlToValidate="txtBillToMobileNo" runat="server" ValidationGroup="Save"
+                                                ErrorMessage="Enter Bill To Mobile Number" Display="Dynamic">
+                                                Enter Bill To Mobile Number</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Address 1 : </label>
+                                        <div class="col-md-7 col-xs-12">
+                                            <asp:TextBox ID="txtBillToAdd1" runat="server" CssClass="form-control" placeholder="Address 1" MaxLength="30"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvtxtBillToAdd1" Style="color: red;" ControlToValidate="txtBillToAdd1" runat="server" ValidationGroup="Save"
+                                                ErrorMessage="Enter Bill To Address" Display="Dynamic">
+                                                Enter Bill To Address</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Address 2 : </label>
+                                        <div class="col-md-7 col-xs-12">
+                                            <asp:TextBox ID="txtBillToAdd2" runat="server" CssClass="form-control" placeholder="Address 2" MaxLength="30"></asp:TextBox>
+                                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" Style="color: red;" ControlToValidate="txtAddress" runat="server" ValidationGroup="Save"
+                                                ErrorMessage="Enter Address" Display="Dynamic">Enter Address</asp:RequiredFieldValidator>--%>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Address 3 : </label>
+                                        <div class="col-md-7 col-xs-12">
+                                            <asp:TextBox ID="txtBillToAdd3" runat="server" CssClass="form-control" placeholder="Address 3"></asp:TextBox>
+                                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" Style="color: red;" ControlToValidate="txtAddress" runat="server" ValidationGroup="Save"
+                                                ErrorMessage="Enter Address" Display="Dynamic">Enter Address</asp:RequiredFieldValidator>--%>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Pincode : </label>
+                                        <div class="col-md-7 col-xs-12">
+                                            <asp:TextBox ID="txtBillToPinCode" runat="server" CssClass="form-control" placeholder="Pincode" MaxLength="6" OnTextChanged="txtBillToPinCode_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvtxtBillToPinCode" Style="color: red;" ControlToValidate="txtBillToPinCode" runat="server" ValidationGroup="Save"
+                                                ErrorMessage="Enter Bill To Pincode" Display="Dynamic">
+                                                Enter Bill To Pincode</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">State : </label>
+                                        <div class="col-md-7 col-xs-12">
+                                            <asp:DropDownList ID="ddlBillToState" runat="server" CssClass="form-control required_text_box" Enabled="true" placeholder="State" OnSelectedIndexChanged="ddlBillToState_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="rfvddlBillToState" runat="server" ControlToValidate="ddlBillToState" ValidationGroup="Save" Style="color: red;"
+                                                Display="Dynamic" ErrorMessage="Select Bill To State" InitialValue="0">
+                                                Select Bill To State</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">City : </label>
+                                        <div class="col-md-7 col-xs-12">
+                                            <asp:DropDownList ID="ddlBillToCity" runat="server" CssClass="form-control required_text_box" Enabled="true" placeholder="City"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="rfvddlBillToCity" runat="server" ControlToValidate="ddlBillToCity" ValidationGroup="Save" Style="color: red;"
+                                                Display="Dynamic" ErrorMessage="Select Bill To City" InitialValue="0">
+                                                Select Bill To City</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </fieldset>
                     </div>
 

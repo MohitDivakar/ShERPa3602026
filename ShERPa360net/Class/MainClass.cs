@@ -12659,6 +12659,7 @@ namespace ShERPa360net
                 cmd.Parameters.AddWithValue("@LASTMONTHLAST", setDateFormat(LASTLAST, true));
                 cmd.Parameters.AddWithValue("@ACTION", ACTION);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandTimeout = 800;
                 cmd.Connection.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);

@@ -42,6 +42,7 @@ namespace ShERPa360net.SD
                         objBindDDL.FillPaymentMode(ddlPayMode);
                         objBindDDL.FillPaymentGateway(ddlPayGateway);
                         objBindDDL.FillState(ddlState);
+                        objBindDDL.FillState(ddlBillToState);
                         objBindDDL.FillLists(ddlReference, "IR");
                         SetUpGrid();
                     }
@@ -1175,6 +1176,16 @@ namespace ShERPa360net.SD
                                 objSOCreateClass.REFERAL = ddlReference.SelectedItem.Text;
                                 objSOCreateClass.REFEREALNAME = txtRefName.Text;
 
+                                objSOCreateClass.BILLTOCUSTNAME = txtBillToName.Text;
+                                objSOCreateClass.BILLTOCUSTADD1 = txtBillToAdd1.Text;
+                                objSOCreateClass.BILLTOCUSTADD2 = txtBillToAdd2.Text;
+                                objSOCreateClass.BILLTOCUSTADD3 = txtBillToAdd3.Text;
+                                objSOCreateClass.BILLTOCITY = ddlBillToCity.SelectedItem.Text;
+                                objSOCreateClass.BILLTOSTATEID = Convert.ToInt32(ddlBillToState.SelectedValue);
+                                objSOCreateClass.BILLTOPINCODE = txtBillToPinCode.Text;
+                                objSOCreateClass.BILLTOCUSTMOBILENO = txtBillToMobileNo.Text;
+                                objSOCreateClass.BILLTOCUSTEMAILID = "";
+
 
                                 objCreateDCMST.CMPID = objMainClass.intCmpId;
                                 objCreateDCMST.CREATEBY = Convert.ToInt32(Session["USERID"]);
@@ -1238,8 +1249,8 @@ namespace ShERPa360net.SD
                                 //string PRURL = "http://14.98.132.190:1503/api/CreateSONew";
                                 //string PRURL = "http://3.6.38.46/api/CreateSONew";
                                 //string PRURL = "http://localhost:44397/api/CreateSONew";
-                                //string PRURL = "http://localhost:44397/api/CreateSONewV1";
-                                string PRURL = "http://14.98.132.190:1503/api/CreateSONewV1";
+                                string PRURL = "http://localhost:44397/api/CreateSONewV1";
+                                //string PRURL = "http://14.98.132.190:1503/api/CreateSONewV1";
                                 var client = new RestClient(PRURL);
                                 client.Timeout = -1;
                                 var request = new RestRequest(Method.POST);
@@ -1764,6 +1775,129 @@ namespace ShERPa360net.SD
                     }
 
                     lblTotalAmt.Text = Convert.ToString(finalamt);
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-warning').modal();$('#lblAlertMsg').text('Session Expired. Please Log In again.');$('.close').click(function(){window.location.href ='../Login.aspx' });", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-danger').modal();$('#lblErrMsg').text(\"" + ex.Message + "\");", true);
+            }
+        }
+
+        protected void chkSameAsShipto_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["USERID"] != null)
+                {
+                    if (chkSameAsShipto.Checked == true)
+                    {
+                        txtBillToName.Text = txtName.Text;
+                        txtBillToMobileNo.Text = txtMobileNo.Text;
+                        txtBillToAdd1.Text = txtAddress.Text;
+                        txtBillToAdd2.Text = txtAddress2.Text;
+                        txtBillToAdd3.Text = txtAddress3.Text;
+                        txtBillToPinCode.Text = txtPincode.Text;
+                        txtBillToPinCode_TextChanged(1, e);
+                        ddlBillToState.SelectedValue = ddlState.SelectedValue;
+                        ddlBillToCity.SelectedValue = ddlCity.SelectedValue;
+                    }
+                    else
+                    {
+                        txtBillToName.Text = string.Empty;
+                        txtBillToMobileNo.Text = string.Empty;
+                        txtBillToAdd1.Text = string.Empty;
+                        txtBillToAdd2.Text = string.Empty;
+                        txtBillToAdd3.Text = string.Empty;
+                        txtBillToPinCode.Text = string.Empty;
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-warning').modal();$('#lblAlertMsg').text('Session Expired. Please Log In again.');$('.close').click(function(){window.location.href ='../Login.aspx' });", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-danger').modal();$('#lblErrMsg').text(\"" + ex.Message + "\");", true);
+            }
+        }
+
+        protected void txtBillToPinCode_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["USERID"] != null)
+                {
+                    if (txtBillToPinCode.Text.Length == 6)
+                    {
+                        try
+                        {
+
+                            if (!System.Text.RegularExpressions.Regex.IsMatch(txtBillToPinCode.Text, "[0-9]{6}$"))
+                            {
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-danger').modal();$('#lblErrMsg').text('Only Numbers Aloowed.');", true);
+                                txtBillToPinCode.Text = string.Empty;
+                            }
+                            else
+                            {
+                                DataTable ds = new DataTable();
+                                ds = objMainClass.SELECT_CITY_BYPINCODE(txtBillToPinCode.Text.Trim());
+                                if (ds.Rows.Count > 0)
+                                {
+                                    ddlBillToState.SelectedValue = ds.Rows[0]["STATE_ID"].ToString();
+                                    ddlBillToCity.DataSource = string.Empty;
+                                    ddlBillToCity.DataBind();
+                                    objBindDDL.FillCity(ddlBillToCity, ddlBillToState.SelectedValue);
+                                    //ddlCity.SelectedItem.Text = ds.Rows[0]["CITY_NAME"].ToString();
+                                }
+                                else
+                                {
+                                    ddlBillToState.SelectedIndex = 0;
+                                    ddlBillToCity.SelectedIndex = 0;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-danger').modal();$('#lblErrMsg').text(\"" + ex.Message + "\");", true);
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-warning').modal();$('#lblAlertMsg').text('Session Expired. Please Log In again.');$('.close').click(function(){window.location.href ='../Login.aspx' });", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#modal-danger').modal();$('#lblErrMsg').text(\"" + ex.Message + "\");", true);
+            }
+        }
+
+        protected void ddlBillToState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["USERID"] != null)
+                {
+
+                    if (ddlBillToState.SelectedIndex > 0)
+                    {
+                        objBindDDL.FillCity(ddlBillToCity, ddlBillToState.SelectedValue);
+                    }
+                    else
+                    {
+                        objBindDDL.FillCity(ddlBillToCity);
+                    }
 
                 }
                 else

@@ -713,6 +713,55 @@ namespace ShERPa360net.Models
         /// 
         /// </summary>
         public string REFEREALNAME { get; set; }
+
+        /// <summary>
+        /// Bill to Customer Name
+        /// </summary>
+        public string BILLTOCUSTNAME { get; set; }
+
+        /// <summary>
+        /// Bill to Cusomter Address 1
+        /// </summary>
+        public string BILLTOCUSTADD1 { get; set; }
+
+        /// <summary>
+        /// Bill to Cusomter Address 2
+        /// </summary>
+        public string BILLTOCUSTADD2 { get; set; }
+
+        /// <summary>
+        /// Bill to Cusomter Address 3
+        /// </summary>
+        public string BILLTOCUSTADD3 { get; set; }
+
+        /// <summary>
+        /// Bill to Cusomter City
+        /// </summary>
+        public string BILLTOCITY { get; set; }
+
+        /// <summary>
+        /// Bill to Cusomter State
+        /// </summary>
+        public int BILLTOSTATEID { get; set; }
+
+        /// <summary>
+        /// Bill to Cusomter Pincode
+        /// </summary>
+        public string BILLTOPINCODE { get; set; }
+
+        /// <summary>
+        /// Bill to Cusomter Mobile Number
+        /// </summary>
+        public string BILLTOCUSTMOBILENO { get; set; }
+
+        /// <summary>
+        /// Bill to Cusomter Mail ID
+        /// </summary>
+        public string BILLTOCUSTEMAILID { get; set; }
+
+
+
+
     }
     public class LSTITEMDETAILSNEWV1
     {

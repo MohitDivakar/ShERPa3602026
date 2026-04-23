@@ -7812,6 +7812,7 @@
     <Content Include="Dashboardimg\210.img" />
     <EmbeddedResource Include="Report\rptQuotation.rdlc" />
     <EmbeddedResource Include="Report\rptSIDoc.rdlc" />
+    <EmbeddedResource Include="Report\rptSIDocOld23042026.rdlc" />
     <EmbeddedResource Include="Report\rptTCR.rdlc" />
     <None Include="Connected Services\LivePincode\ServiceFinderQuery.wsdl" />
     <None Include="Connected Services\LivePincode\ServiceFinderQuery.xsd">

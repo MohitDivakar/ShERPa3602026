@@ -13,32 +13,41 @@
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT  ISNULL(CASE WHEN H.ITEMGRPID = 9 THEN (C.PRODMAKE + ' ' + B.MODELDESC + ' ' + B.RAMSIZE +' GB ' + B.ROMSIZE +' GB ' + B.COLOR) ELSE H.ITEMDESC END,H.ITEMDESC) AS ITEMSPEC , E.HSNCODE,
-					F.RETAILCUSTNAME AS ENDCUST,F.CUSTADD1 AS ENDADDR1,F.CUSTADD2 AS ENDADDR2,F.CUSTADD3 AS ENDADDR3,F.CITY AS ENDCITY,F.STATE AS ENDSTATE,F.CUSTMOBILENO AS ENDMOBILENO,
-					F.PINCODE AS ENDPOSTALCODE,C.PRODMAKE,C.PRODMODEL,F.CUSTPARTDESC2 AS IMEINO, H.JOBID,C.JOBDT,H.ITEMDESC,G.TAXAMT,H.SINO,F.CMPID,H.QTY,
-					CASE WHEN A.SITYPE = 'SLR' THEN (H.RATE - H.DISCAMT) ELSE H.RATE END AS RATE,
-					CAST(((CASE WHEN A.SITYPE = 'SLR' THEN (H.RATE - H.DISCAMT) ELSE H.RATE END) * H.QTY) AS DECIMAL(10,2)) AS CAMOUNT,
-					A.SIDT,H.DISCAMT,A.OTHERS,A.NETAMT,A.TOTAMT,A.ROUNDOFF,ISNULL(G.RATE, 0) AS TAXRATE,A.REMARK,H.SITYPE AS SITYPE,A.COUPONNO, H.COUPONVALUE,G.CONDTYPE,A.TAXOTH,A.TAXDISC,B.SERIALNO,
-					I.PAYMODE,J.DESCR,A.PREPAIDAMT,A.REMAINAMT,UPPER(K.ADDOF) AS ADDOF,L.ADDR1,L.ADDR2,L.ADDR3,L.CITY,L.POSTALCODE,K.GSTNO,M.STATE,M.STATECODE,O.ADDR1 AS DISPADDR1,O.ADDR2 AS DISPADDR2,
-					O.ADDR3 AS DISPADDR3,O.CITY AS DISPCITY,O.POSTALCODE AS DISPPOSTALCODE,P.STATE AS DISPSTATE,P.STATECODE AS DISPSTATECODE,F.REFNO,F.GSTNO AS CUSTGSTNO,F.RETAILCUSTNAME AS CUSTNAME,
-					F.CUSTADD1,F.CUSTADD2,F.CUSTADD3,F.CITY AS SOCITY,F.PINCODE,F.STATE  AS SOSTATE,H.ITEMGRPID,A.NETTAXAMT,A.SITYPE,F.SEGMENT,N.GSTNO AS DISPATCHGST,F.PLANTCD,F.EWID,F.EWDESC,F.EWPRICE
-					FROM VIE_SODTL AS F WITH(NOLOCK) 
-					LEFT OUTER JOIN VIE_JOBSHEET AS C WITH(NOLOCK) ON F.JOBID = C.JOBID
-					LEFT OUTER JOIN VIE_DCSODTL AS Q WITH(NOLOCK) ON F.SONO = Q.SONO AND F.SRNO = Q.SOSRNO
-					LEFT OUTER JOIN VIE_SIDTL AS H WITH(NOLOCK) ON H.SONO = F.SONO  AND Q.DOCNO = H.DCNO AND Q.SRNO = H.DCSRNO
-					LEFT OUTER JOIN TRAN_SIMST AS A WITH(NOLOCK) ON A.SINO = H.SINO
-					LEFT OUTER JOIN TRAN_JSPROD_SPEC AS B WITH(NOLOCK) ON H.JOBID = B.JOBID
-					LEFT OUTER JOIN MST_ITEM AS D WITH(NOLOCK) ON H.ITEMID = D.ITEMID
-					LEFT OUTER JOIN MST_ITEMSUBGRP AS E WITH(NOLOCK) ON E.ID = D.ITEMSUBGRP
-					LEFT OUTER JOIN TRAN_SICOND AS G WITH(NOLOCK) ON H.CMPID = G.CMPID AND H.SINO = G.SINO AND H.SRNO = G.SISRNO 
-					LEFT OUTER JOIN MST_PAYMENTMODE AS I WITH(NOLOCK) ON F.PAYMODE = I.ID
-					LEFT OUTER JOIN MST_PAYTERMS AS J WITH(NOLOCK) ON F.PMTTERMS = J.PMTTERMS
-					LEFT OUTER JOIN MST_PLANT AS K WITH(NOLOCK) ON K.CMPID = F.CMPID AND K.PLANTCD = H.PLANTCD
-					LEFT OUTER JOIN MST_ADDRESS AS L WITH(NOLOCK) ON L.CMPID = K.CMPID AND L.ID = K.GSTADDID
-					LEFT OUTER JOIN MST_STATE AS M WITH(NOLOCK) ON M.ID = L.STCD
-					LEFT OUTER JOIN MST_PLANT AS N WITH(NOLOCK) ON N.CMPID = F.CMPID AND N.PLANTCD = H.PLANTCD
-					LEFT OUTER JOIN MST_ADDRESS AS O WITH(NOLOCK) ON O.CMPID = N.CMPID AND O.ID = N.ADDID
-					LEFT OUTER JOIN MST_STATE AS P WITH(NOLOCK) ON P.ID = O.STCD
-					WHERE H.CMPID = @CMPID AND H.SINO = @SINO  ORDER BY TAXRATE DESC</CommandText>
+F.RETAILCUSTNAME AS ENDCUST,F.CUSTADD1 AS ENDADDR1,F.CUSTADD2 AS ENDADDR2,F.CUSTADD3 AS ENDADDR3,F.CITY AS ENDCITY,F.STATE AS ENDSTATE,F.CUSTMOBILENO AS ENDMOBILENO,
+F.PINCODE AS ENDPOSTALCODE,C.PRODMAKE,C.PRODMODEL,F.CUSTPARTDESC2 AS IMEINO, H.JOBID,C.JOBDT,H.ITEMDESC,G.TAXAMT,H.SINO,F.CMPID,H.QTY,
+CASE WHEN A.SITYPE = 'SLR' THEN (H.RATE - H.DISCAMT) ELSE H.RATE END AS RATE,
+CAST(((CASE WHEN A.SITYPE = 'SLR' THEN (H.RATE - H.DISCAMT) ELSE H.RATE END) * H.QTY) AS DECIMAL(10,2)) AS CAMOUNT,
+A.SIDT,H.DISCAMT,A.OTHERS,A.NETAMT,A.TOTAMT,A.ROUNDOFF,ISNULL(G.RATE, 0) AS TAXRATE,A.REMARK,H.SITYPE AS SITYPE,A.COUPONNO, H.COUPONVALUE,G.CONDTYPE,A.TAXOTH,A.TAXDISC,B.SERIALNO,
+I.PAYMODE,J.DESCR,A.PREPAIDAMT,A.REMAINAMT,UPPER(K.ADDOF) AS ADDOF,L.ADDR1,L.ADDR2,L.ADDR3,L.CITY,L.POSTALCODE,K.GSTNO,M.STATE,M.STATECODE,O.ADDR1 AS DISPADDR1,O.ADDR2 AS DISPADDR2,
+O.ADDR3 AS DISPADDR3,O.CITY AS DISPCITY,O.POSTALCODE AS DISPPOSTALCODE,P.STATE AS DISPSTATE,P.STATECODE AS DISPSTATECODE,F.REFNO,F.GSTNO AS CUSTGSTNO,F.RETAILCUSTNAME AS CUSTNAME,
+F.CUSTADD1,F.CUSTADD2,F.CUSTADD3,F.CITY AS SOCITY,F.PINCODE,F.STATE  AS SOSTATE,H.ITEMGRPID,A.NETTAXAMT,A.SITYPE,F.SEGMENT,N.GSTNO AS DISPATCHGST,F.PLANTCD,F.EWID,F.EWDESC,F.EWPRICE,
+CASE WHEN F.BILLTOCUSTNAME IS NULL THEN F.RETAILCUSTNAME ELSE F.BILLTOCUSTNAME END AS BILLTOCUSTNAME,
+CASE WHEN F.BILLTOCUSTADD1 IS NULL THEN F.CUSTADD1 ELSE F.BILLTOCUSTADD1 END AS BILLTOCUSTADD1,
+CASE WHEN F.BILLTOCUSTADD2 IS NULL THEN F.CUSTADD2 ELSE F.BILLTOCUSTADD2 END AS BILLTOCUSTADD2,
+CASE WHEN F.BILLTOCUSTADD3 IS NULL THEN F.CUSTADD3 ELSE F.BILLTOCUSTADD3 END AS BILLTOCUSTADD3,
+CASE WHEN F.BILLTOCITY IS NULL THEN F.CITY ELSE F.BILLTOCITY END AS BILLTOCITYE,
+CASE WHEN R.STATE IS NULL THEN F.STATE ELSE R.STATE END AS BILLTOSTATEID,
+CASE WHEN F.BILLTOPINCODE IS NULL THEN F.PINCODE ELSE F.BILLTOPINCODE END AS BILLTOPINCODE,
+CASE WHEN F.BILLTOCUSTMOBILENO IS NULL THEN F.CUSTMOBILENO ELSE F.BILLTOCUSTMOBILENO END AS BILLTOCUSTMOBILENO
+FROM VIE_SODTL AS F WITH(NOLOCK) 
+LEFT OUTER JOIN VIE_JOBSHEET AS C WITH(NOLOCK) ON F.JOBID = C.JOBID
+LEFT OUTER JOIN VIE_DCSODTL AS Q WITH(NOLOCK) ON F.SONO = Q.SONO AND F.SRNO = Q.SOSRNO
+LEFT OUTER JOIN VIE_SIDTL AS H WITH(NOLOCK) ON H.SONO = F.SONO  AND Q.DOCNO = H.DCNO AND Q.SRNO = H.DCSRNO --AND H.JOBID = F.JOBID 
+LEFT OUTER JOIN TRAN_SIMST AS A WITH(NOLOCK) ON A.SINO = H.SINO
+LEFT OUTER JOIN TRAN_JSPROD_SPEC AS B WITH(NOLOCK) ON H.JOBID = B.JOBID
+LEFT OUTER JOIN MST_ITEM AS D WITH(NOLOCK) ON H.ITEMID = D.ITEMID
+LEFT OUTER JOIN MST_ITEMSUBGRP AS E WITH(NOLOCK) ON E.ID = D.ITEMSUBGRP
+LEFT OUTER JOIN TRAN_SICOND AS G WITH(NOLOCK) ON H.CMPID = G.CMPID AND H.SINO = G.SINO AND H.SRNO = G.SISRNO 
+LEFT OUTER JOIN MST_PAYMENTMODE AS I WITH(NOLOCK) ON F.PAYMODE = I.ID
+LEFT OUTER JOIN MST_PAYTERMS AS J WITH(NOLOCK) ON F.PMTTERMS = J.PMTTERMS
+LEFT OUTER JOIN MST_PLANT AS K WITH(NOLOCK) ON K.CMPID = F.CMPID AND K.PLANTCD = H.PLANTCD
+LEFT OUTER JOIN MST_ADDRESS AS L WITH(NOLOCK) ON L.CMPID = K.CMPID AND L.ID = K.GSTADDID
+LEFT OUTER JOIN MST_STATE AS M WITH(NOLOCK) ON M.ID = L.STCD
+LEFT OUTER JOIN MST_PLANT AS N WITH(NOLOCK) ON N.CMPID = F.CMPID AND N.PLANTCD = H.PLANTCD
+LEFT OUTER JOIN MST_ADDRESS AS O WITH(NOLOCK) ON O.CMPID = N.CMPID AND O.ID = N.ADDID
+LEFT OUTER JOIN MST_STATE AS P WITH(NOLOCK) ON P.ID = O.STCD
+LEFT OUTER JOIN MST_STATE AS R WITH(NOLOCK) ON F.BILLTOSTATEID = R.ID
+WHERE H.CMPID = @CMPID AND H.SINO = @SINO  ORDER BY TAXRATE DESC</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="CMPID" ColumnName="CMPID" DataSourceName="SHERPADB.dbo.VIE_SIDTL" DataTypeServer="numeric(18, 0)" DbType="Decimal" Direction="Input" ParameterName="@CMPID" Precision="18" ProviderType="Decimal" Scale="0" Size="9" SourceColumn="CMPID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="SINO" ColumnName="SINO" DataSourceName="SHERPADB.dbo.VIE_SIDTL" DataTypeServer="nvarchar(10)" DbType="String" Direction="Input" ParameterName="@SINO" Precision="0" ProviderType="NVarChar" Scale="0" Size="10" SourceColumn="SINO" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -123,6 +132,14 @@
               <Mapping SourceColumn="EWID" DataSetColumn="EWID" />
               <Mapping SourceColumn="EWDESC" DataSetColumn="EWDESC" />
               <Mapping SourceColumn="EWPRICE" DataSetColumn="EWPRICE" />
+              <Mapping SourceColumn="BILLTOCUSTNAME" DataSetColumn="BILLTOCUSTNAME" />
+              <Mapping SourceColumn="BILLTOCUSTADD1" DataSetColumn="BILLTOCUSTADD1" />
+              <Mapping SourceColumn="BILLTOCUSTADD2" DataSetColumn="BILLTOCUSTADD2" />
+              <Mapping SourceColumn="BILLTOCUSTADD3" DataSetColumn="BILLTOCUSTADD3" />
+              <Mapping SourceColumn="BILLTOCITYE" DataSetColumn="BILLTOCITYE" />
+              <Mapping SourceColumn="BILLTOSTATEID" DataSetColumn="BILLTOSTATEID" />
+              <Mapping SourceColumn="BILLTOPINCODE" DataSetColumn="BILLTOPINCODE" />
+              <Mapping SourceColumn="BILLTOCUSTMOBILENO" DataSetColumn="BILLTOCUSTMOBILENO" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -166,7 +183,7 @@
   <xs:element name="DSSalesInvoicenew" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSSalesInvoicenew" msprop:Generator_UserDSName="DSSalesInvoicenew">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DSSI" msprop:Generator_TableClassName="DSSIDataTable" msprop:Generator_TableVarName="tableDSSI" msprop:Generator_TablePropName="DSSI" msprop:Generator_RowDeletingName="DSSIRowDeleting" msprop:Generator_RowChangingName="DSSIRowChanging" msprop:Generator_RowEvHandlerName="DSSIRowChangeEventHandler" msprop:Generator_RowDeletedName="DSSIRowDeleted" msprop:Generator_UserTableName="DSSI" msprop:Generator_RowChangedName="DSSIRowChanged" msprop:Generator_RowEvArgName="DSSIRowChangeEvent" msprop:Generator_RowClassName="DSSIRow">
+        <xs:element name="DSSI" msprop:Generator_TableClassName="DSSIDataTable" msprop:Generator_TableVarName="tableDSSI" msprop:Generator_RowChangedName="DSSIRowChanged" msprop:Generator_TablePropName="DSSI" msprop:Generator_RowDeletingName="DSSIRowDeleting" msprop:Generator_RowChangingName="DSSIRowChanging" msprop:Generator_RowEvHandlerName="DSSIRowChangeEventHandler" msprop:Generator_RowDeletedName="DSSIRowDeleted" msprop:Generator_RowClassName="DSSIRow" msprop:Generator_UserTableName="DSSI" msprop:Generator_RowEvArgName="DSSIRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ITEMSPEC" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnITEMSPEC" msprop:Generator_ColumnPropNameInRow="ITEMSPEC" msprop:Generator_ColumnPropNameInTable="ITEMSPECColumn" msprop:Generator_UserColumnName="ITEMSPEC" minOccurs="0">
@@ -526,10 +543,54 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="EWPRICE" msprop:Generator_ColumnVarNameInTable="columnEWPRICE" msprop:Generator_ColumnPropNameInRow="EWPRICE" msprop:Generator_ColumnPropNameInTable="EWPRICEColumn" msprop:Generator_UserColumnName="EWPRICE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BILLTOCUSTNAME" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBILLTOCUSTNAME" msprop:Generator_ColumnPropNameInRow="BILLTOCUSTNAME" msprop:Generator_ColumnPropNameInTable="BILLTOCUSTNAMEColumn" msprop:Generator_UserColumnName="BILLTOCUSTNAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BILLTOCUSTADD1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBILLTOCUSTADD1" msprop:Generator_ColumnPropNameInRow="BILLTOCUSTADD1" msprop:Generator_ColumnPropNameInTable="BILLTOCUSTADD1Column" msprop:Generator_UserColumnName="BILLTOCUSTADD1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BILLTOCUSTADD2" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBILLTOCUSTADD2" msprop:Generator_ColumnPropNameInRow="BILLTOCUSTADD2" msprop:Generator_ColumnPropNameInTable="BILLTOCUSTADD2Column" msprop:Generator_UserColumnName="BILLTOCUSTADD2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BILLTOCUSTADD3" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBILLTOCUSTADD3" msprop:Generator_ColumnPropNameInRow="BILLTOCUSTADD3" msprop:Generator_ColumnPropNameInTable="BILLTOCUSTADD3Column" msprop:Generator_UserColumnName="BILLTOCUSTADD3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BILLTOCITYE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBILLTOCITYE" msprop:Generator_ColumnPropNameInRow="BILLTOCITYE" msprop:Generator_ColumnPropNameInTable="BILLTOCITYEColumn" msprop:Generator_UserColumnName="BILLTOCITYE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BILLTOSTATEID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBILLTOSTATEID" msprop:Generator_ColumnPropNameInRow="BILLTOSTATEID" msprop:Generator_ColumnPropNameInTable="BILLTOSTATEIDColumn" msprop:Generator_UserColumnName="BILLTOSTATEID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BILLTOPINCODE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBILLTOPINCODE" msprop:Generator_ColumnPropNameInRow="BILLTOPINCODE" msprop:Generator_ColumnPropNameInTable="BILLTOPINCODEColumn" msprop:Generator_UserColumnName="BILLTOPINCODE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BILLTOCUSTMOBILENO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBILLTOCUSTMOBILENO" msprop:Generator_ColumnPropNameInRow="BILLTOCUSTMOBILENO" msprop:Generator_ColumnPropNameInTable="BILLTOCUSTMOBILENOColumn" msprop:Generator_UserColumnName="BILLTOCUSTMOBILENO" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DSSITAX" msprop:Generator_TableClassName="DSSITAXDataTable" msprop:Generator_TableVarName="tableDSSITAX" msprop:Generator_TablePropName="DSSITAX" msprop:Generator_RowDeletingName="DSSITAXRowDeleting" msprop:Generator_RowChangingName="DSSITAXRowChanging" msprop:Generator_RowEvHandlerName="DSSITAXRowChangeEventHandler" msprop:Generator_RowDeletedName="DSSITAXRowDeleted" msprop:Generator_UserTableName="DSSITAX" msprop:Generator_RowChangedName="DSSITAXRowChanged" msprop:Generator_RowEvArgName="DSSITAXRowChangeEvent" msprop:Generator_RowClassName="DSSITAXRow">
+        <xs:element name="DSSITAX" msprop:Generator_TableClassName="DSSITAXDataTable" msprop:Generator_TableVarName="tableDSSITAX" msprop:Generator_RowChangedName="DSSITAXRowChanged" msprop:Generator_TablePropName="DSSITAX" msprop:Generator_RowDeletingName="DSSITAXRowDeleting" msprop:Generator_RowChangingName="DSSITAXRowChanging" msprop:Generator_RowEvHandlerName="DSSITAXRowChangeEventHandler" msprop:Generator_RowDeletedName="DSSITAXRowDeleted" msprop:Generator_RowClassName="DSSITAXRow" msprop:Generator_UserTableName="DSSITAX" msprop:Generator_RowEvArgName="DSSITAXRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AVGRATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAVGRATE" msprop:Generator_ColumnPropNameInRow="AVGRATE" msprop:Generator_ColumnPropNameInTable="AVGRATEColumn" msprop:Generator_UserColumnName="AVGRATE" type="xs:decimal" minOccurs="0" />
